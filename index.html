@@ -1,101 +1,15 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="theme-color" content="#0f172a" />
-    <title>Offshore Rotation Planner (PWA shell)</title>
-    <link rel="manifest" href="manifest.json" />
-    <link rel="stylesheet" href="styles.css" />
+    <meta name="description" content="Offline-first offshore rotation planner" />
+    <link rel="manifest" href="/manifest.json" />
+    <title>Offshore Rotation Planner</title>
   </head>
-  <body>
-    <div class="app-shell">
-      <header class="header">
-        <div class="header-inner">
-          <div class="brand">
-            <div class="brand-badge" aria-hidden="true"></div>
-            <div>
-              <div>Offshore Rotation</div>
-              <div class="badge">Offline-first PWA shell</div>
-            </div>
-          </div>
-          <div class="badge">v0.1</div>
-        </div>
-      </header>
-
-      <main>
-        <section id="calendar" class="section active">
-          <div class="panel">
-            <h2>Calendar (placeholder)</h2>
-            <p>Offline-first layout ready for React/Vite integration.</p>
-            <div class="placeholder-grid" style="margin-top:12px">
-              <div class="placeholder-tile">Calendar grid goes here</div>
-              <div class="placeholder-tile">Drag-to-paint travel days</div>
-            </div>
-          </div>
-        </section>
-
-        <section id="dashboard" class="section">
-          <div class="panel">
-            <h2>Dashboard (placeholder)</h2>
-            <p>Countdown & earnings summary will render here.</p>
-            <div class="placeholder-grid" style="margin-top:12px">
-              <div class="placeholder-tile">Crew change countdown</div>
-              <div class="placeholder-tile">Monthly income + tax</div>
-            </div>
-          </div>
-        </section>
-
-        <section id="settings" class="section">
-          <div class="panel">
-            <h2>Settings (placeholder)</h2>
-            <p>Anchor date, rates, currency toggle will go here.</p>
-            <div class="placeholder-grid" style="margin-top:12px">
-              <div class="placeholder-tile">Anchor date input</div>
-              <div class="placeholder-tile">Daily rate, travel rate, allowances</div>
-            </div>
-          </div>
-        </section>
-      </main>
-
-      <nav class="tabs" aria-label="Primary tabs">
-        <button class="tab-btn active" data-target="calendar">
-          <span class="icon-circle">📅</span>
-          <span>Calendar</span>
-        </button>
-        <button class="tab-btn" data-target="dashboard">
-          <span class="icon-circle">⏱️</span>
-          <span>Dashboard</span>
-        </button>
-        <button class="tab-btn" data-target="settings">
-          <span class="icon-circle">⚙️</span>
-          <span>Settings</span>
-        </button>
-      </nav>
-    </div>
-
-    <script>
-      // Simple tab toggle without build tools.
-      const tabs = document.querySelectorAll('.tab-btn');
-      const sections = document.querySelectorAll('.section');
-      tabs.forEach((btn) => {
-        btn.addEventListener('click', () => {
-          tabs.forEach((b) => b.classList.remove('active'));
-          sections.forEach((s) => s.classList.remove('active'));
-          btn.classList.add('active');
-          const target = btn.getAttribute('data-target');
-          document.getElementById(target).classList.add('active');
-        });
-      });
-
-      // Minimal service worker registration (static) for offline shell test.
-      if ('serviceWorker' in navigator) {
-        window.addEventListener('load', () => {
-          navigator.serviceWorker
-            .register('./sw.js')
-            .catch((err) => console.warn('SW registration failed', err));
-        });
-      }
-    </script>
+  <body class="dark">
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
   </body>
 </html>
