@@ -1,10 +1,14 @@
-import React from 'react';
+import React, { useState } from 'react';
+import Calendar from './Calendar';
+import Dashboard from './Dashboard';
+import Settings from './Settings';
+import { Calendar as CalendarIcon, LayoutDashboard, Settings as SettingsIcon } from 'lucide-react';
 
 const shellClasses =
-  'min-h-screen bg-[#0b1220] text-slate-100 flex justify-center font-[\"Inter\",\"Segoe UI\",system-ui,-apple-system,sans-serif]';
+  'min-h-screen bg-[#0b1220] text-slate-100 flex justify-center font-["Inter","Segoe UI",system-ui,-apple-system,sans-serif]';
 
 const containerClasses =
-  'relative w-full max-w-[640px] min-h-screen bg-gradient-to-b from-[#0b1220] to-[#0d1528] overflow-hidden';
+  'relative w-full max-w-[640px] min-h-screen bg-gradient-to-b from-[#0b1220] to-[#0d1528] overflow-hidden flex flex-col';
 
 const headerClasses =
   'sticky top-0 z-10 backdrop-blur bg-[#0c1220d9] border-b border-slate-800';
@@ -12,88 +16,59 @@ const headerClasses =
 const headerInner = 'flex items-center justify-between px-4 py-3 md:px-5';
 
 const badge =
-  'px-2.5 py-1 rounded-md border border-sky-500/25 bg-sky-500/10 text-sky-200 text-xs font-medium';
+  'px-2.5 py-1 rounded-md border border-sky-500/25 bg-sky-500/10 text-sky-200 text-[10px] font-bold uppercase tracking-wider';
 
 const tabBar =
-  'sticky bottom-0 z-10 grid grid-cols-3 bg-[#0a0e18e6] border-t border-slate-800 backdrop-blur';
+  'sticky bottom-0 z-10 grid grid-cols-3 bg-[#0a0e18e6] border-t border-slate-800 backdrop-blur pb-safe';
 
 const tabBtnBase =
-  'appearance-none bg-none border-0 text-slate-400 hover:text-slate-100 focus-visible:text-slate-100 transition-colors text-sm flex flex-col gap-1 items-center justify-center py-3';
-
-const panel = 'bg-[#0f172a] border border-slate-800 rounded-xl p-4 shadow-lg shadow-black/40';
+  'appearance-none bg-none border-0 text-slate-500 hover:text-slate-100 transition-colors text-[10px] font-bold uppercase tracking-widest flex flex-col gap-1 items-center justify-center py-4';
 
 function App() {
+  const [activeTab, setActiveTab] = useState('calendar');
+
   return (
     <div className={shellClasses}>
       <div className={containerClasses}>
         <header className={headerClasses}>
           <div className={headerInner}>
             <div className="flex items-center gap-3 font-bold tracking-tight">
-              <div className="w-9 h-9 rounded-lg bg-gradient-to-br from-amber-300 to-orange-600 shadow-[0_10px_25px_rgba(249,115,22,0.35)]" aria-hidden />
+              <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-amber-400 to-orange-600 shadow-lg shadow-orange-500/20" />
               <div>
-                <div>Offshore Rotation</div>
-                <div className={badge}>Offline-first PWA shell</div>
+                <div className="text-sm leading-none mb-0.5">Offshore Rotation</div>
+                <div className="text-[10px] text-slate-500 font-medium">Planner & Earnings</div>
               </div>
             </div>
-            <div className={badge}>v0.1</div>
+            <div className={badge}>v1.0</div>
           </div>
         </header>
 
-        <main className="px-4 pb-24 pt-4 space-y-4 md:px-5">
-          <section>
-            <div className={panel}>
-              <h2 className="text-lg font-semibold mb-1">Calendar (placeholder)</h2>
-              <p className="text-slate-400 text-sm">Offline-first layout ready for React logic.</p>
-              <div className="grid gap-3 mt-3">
-                <div className="min-h-[100px] rounded-xl border border-dashed border-slate-600 bg-gradient-to-br from-sky-500/10 to-amber-500/10 grid place-items-center text-slate-400 text-sm">
-                  Calendar grid goes here
-                </div>
-                <div className="min-h-[100px] rounded-xl border border-dashed border-slate-600 bg-gradient-to-br from-sky-500/10 to-amber-500/10 grid place-items-center text-slate-400 text-sm">
-                  Drag-to-paint travel days
-                </div>
-              </div>
-            </div>
-          </section>
-
-          <section>
-            <div className={panel}>
-              <h2 className="text-lg font-semibold mb-1">Dashboard (placeholder)</h2>
-              <p className="text-slate-400 text-sm">Countdown & earnings summary will render here.</p>
-              <div className="grid gap-3 mt-3">
-                <div className="min-h-[100px] rounded-xl border border-dashed border-slate-600 bg-gradient-to-br from-sky-500/10 to-amber-500/10 grid place-items-center text-slate-400 text-sm">
-                  Crew change countdown
-                </div>
-                <div className="min-h-[100px] rounded-xl border border-dashed border-slate-600 bg-gradient-to-br from-sky-500/10 to-amber-500/10 grid place-items-center text-slate-400 text-sm">
-                  Monthly income + tax
-                </div>
-              </div>
-            </div>
-          </section>
-
-          <section>
-            <div className={panel}>
-              <h2 className="text-lg font-semibold mb-1">Settings (placeholder)</h2>
-              <p className="text-slate-400 text-sm">Anchor date, rates, currency toggle will go here.</p>
-              <div className="grid gap-3 mt-3">
-                <div className="min-h-[100px] rounded-xl border border-dashed border-slate-600 bg-gradient-to-br from-sky-500/10 to-amber-500/10 grid place-items-center text-slate-400 text-sm">
-                  Anchor date input
-                </div>
-                <div className="min-h-[100px] rounded-xl border border-dashed border-slate-600 bg-gradient-to-br from-sky-500/10 to-amber-500/10 grid place-items-center text-slate-400 text-sm">
-                  Daily rate, travel rate, allowances
-                </div>
-              </div>
-            </div>
-          </section>
+        <main className="flex-1 overflow-y-auto px-4 py-6 md:px-6">
+          {activeTab === 'calendar' && <Calendar />}
+          {activeTab === 'dashboard' && <Dashboard />}
+          {activeTab === 'settings' && <Settings />}
         </main>
 
         <nav className={tabBar} aria-label="Primary tabs">
-          <button className={`${tabBtnBase} text-amber-400`}>📅
+          <button 
+            onClick={() => setActiveTab('calendar')}
+            className={`${tabBtnBase} ${activeTab === 'calendar' ? 'text-amber-400' : ''}`}
+          >
+            <CalendarIcon className={`w-5 h-5 ${activeTab === 'calendar' ? 'text-amber-400' : 'text-slate-500'}`} />
             <span>Calendar</span>
           </button>
-          <button className={tabBtnBase}>⏱️
+          <button 
+            onClick={() => setActiveTab('dashboard')}
+            className={`${tabBtnBase} ${activeTab === 'dashboard' ? 'text-sky-400' : ''}`}
+          >
+            <LayoutDashboard className={`w-5 h-5 ${activeTab === 'dashboard' ? 'text-sky-400' : 'text-slate-500'}`} />
             <span>Dashboard</span>
           </button>
-          <button className={tabBtnBase}>⚙️
+          <button 
+            onClick={() => setActiveTab('settings')}
+            className={`${tabBtnBase} ${activeTab === 'settings' ? 'text-slate-100' : ''}`}
+          >
+            <SettingsIcon className={`w-5 h-5 ${activeTab === 'settings' ? 'text-slate-100' : 'text-slate-500'}`} />
             <span>Settings</span>
           </button>
         </nav>

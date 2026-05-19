@@ -1,0 +1,103 @@
+import React from 'react';
+import { useStore } from './store';
+
+const Settings = () => {
+  const { 
+    anchorDate, setAnchorDate,
+    normalRate, travelRate, allowances, currency, setRates, setCurrency
+  } = useStore();
+
+  const handleRateChange = (e) => {
+    const { name, value } = e.target;
+    setRates({ [name]: parseFloat(value) || 0 });
+  };
+
+  const inputClasses = "w-full bg-[#1e293b] border border-slate-700 rounded-lg px-4 py-2 text-slate-100 focus:outline-none focus:ring-2 focus:ring-sky-500/50 transition-all";
+  const labelClasses = "block text-xs font-bold text-slate-500 uppercase tracking-wider mb-1.5";
+
+  return (
+    <div className="space-y-6 pb-10">
+      <section className="space-y-4">
+        <h3 className="text-lg font-bold text-slate-100 flex items-center gap-2">
+          📅 Rotation Schedule
+        </h3>
+        <div>
+          <label className={labelClasses}>Anchor Date (Start of "On" Cycle)</label>
+          <input 
+            type="date" 
+            value={anchorDate} 
+            onChange={(e) => setAnchorDate(e.target.value)}
+            className={inputClasses}
+          />
+          <p className="text-[10px] text-slate-500 mt-1">This date defines when your 28-day "On" rotation starts.</p>
+        </div>
+      </section>
+
+      <hr className="border-slate-800" />
+
+      <section className="space-y-4">
+        <h3 className="text-lg font-bold text-slate-100 flex items-center gap-2">
+          💰 Financial Rates
+        </h3>
+        
+        <div className="grid grid-cols-2 gap-4">
+          <div className="col-span-2">
+            <label className={labelClasses}>Currency</label>
+            <select 
+              value={currency} 
+              onChange={(e) => setCurrency(e.target.value)}
+              className={inputClasses}
+            >
+              <option value="USD">USD - US Dollar</option>
+              <option value="MMK">MMK - Myanmar Kyat</option>
+            </select>
+          </div>
+
+          <div>
+            <label className={labelClasses}>Normal Daily Rate</label>
+            <input 
+              type="number" 
+              name="normalRate"
+              value={normalRate} 
+              onChange={handleRateChange}
+              className={inputClasses}
+              placeholder="0.00"
+            />
+          </div>
+
+          <div>
+            <label className={labelClasses}>Travel Daily Rate</label>
+            <input 
+              type="number" 
+              name="travelRate"
+              value={travelRate} 
+              onChange={handleRateChange}
+              className={inputClasses}
+              placeholder="0.00"
+            />
+          </div>
+
+          <div className="col-span-2">
+            <label className={labelClasses}>Fixed Monthly Allowances</label>
+            <input 
+              type="number" 
+              name="allowances"
+              value={allowances} 
+              onChange={handleRateChange}
+              className={inputClasses}
+              placeholder="0.00"
+            />
+          </div>
+        </div>
+      </section>
+
+      <div className="bg-sky-500/10 border border-sky-500/20 rounded-xl p-4">
+        <p className="text-xs text-sky-200/70 leading-relaxed">
+          <strong>Note on Tax:</strong> Myanmar progressive tax is automatically calculated when currency is set to MMK. Ensure your rates are entered as gross amounts.
+        </p>
+      </div>
+    </div>
+  );
+};
+
+export default Settings;

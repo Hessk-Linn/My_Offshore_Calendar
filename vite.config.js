@@ -63,4 +63,5 @@ const pwaOptions = {
 
 export default defineConfig({
   plugins: [react(), VitePWA(pwaOptions)],
+
 });
