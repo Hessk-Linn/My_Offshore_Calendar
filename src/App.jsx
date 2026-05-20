@@ -2,7 +2,8 @@ import React, { useState } from 'react';
 import Calendar from './Calendar';
 import Dashboard from './Dashboard';
 import Settings from './Settings';
-import { Calendar as CalendarIcon, LayoutDashboard, Settings as SettingsIcon } from 'lucide-react';
+import { useStore } from './store';
+import { Calendar as CalendarIcon, LayoutDashboard, Settings as SettingsIcon, Sun, Moon } from 'lucide-react';
 
 const shellClasses =
   'min-h-screen bg-[#0b1220] text-slate-100 flex justify-center font-["Inter","Segoe UI",system-ui,-apple-system,sans-serif]';
@@ -26,9 +27,10 @@ const tabBtnBase =
 
 function App() {
   const [activeTab, setActiveTab] = useState('calendar');
+  const { theme, setTheme } = useStore();
 
   return (
-    <div className={shellClasses}>
+    <div className={`${shellClasses} ${theme}`}>
       <div className={containerClasses}>
         <header className={headerClasses}>
           <div className={headerInner}>
@@ -39,7 +41,16 @@ function App() {
                 <div className="text-[10px] text-slate-500 font-medium">Planner & Earnings</div>
               </div>
             </div>
-            <div className={badge}>v1.0</div>
+            <div className="flex items-center gap-2">
+              <button
+                onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
+                className="p-1.5 rounded-lg hover:bg-slate-800 transition-colors"
+                aria-label="Toggle theme"
+              >
+                {theme === 'dark' ? <Sun className="w-4 h-4 text-amber-400" /> : <Moon className="w-4 h-4 text-slate-400" />}
+              </button>
+              <div className={badge}>v1.0</div>
+            </div>
           </div>
         </header>
 

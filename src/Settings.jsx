@@ -4,7 +4,8 @@ import { useStore } from './store';
 const Settings = () => {
   const { 
     anchorDate, setAnchorDate,
-    normalRate, travelRate, allowances, currency, setRates, setCurrency
+    normalRate, travelRate, allowances, currency, setRates, setCurrency,
+    rotationPreset, setRotationPreset, resetAll
   } = useStore();
 
   const handleRateChange = (e) => {
@@ -22,6 +23,13 @@ const Settings = () => {
           📅 Rotation Schedule
         </h3>
         <div>
+          <label className={labelClasses}>Rotation Pattern</label>
+          <select value={rotationPreset} onChange={(e) => setRotationPreset(e.target.value)} className={inputClasses}>
+            <option value="28/28">28 days On / 28 days Off</option>
+            <option value="35/35">35 days On / 35 days Off</option>
+          </select>
+        </div>
+        <div>
           <label className={labelClasses}>Anchor Date (Start of "On" Cycle)</label>
           <input 
             type="date" 
@@ -29,7 +37,7 @@ const Settings = () => {
             onChange={(e) => setAnchorDate(e.target.value)}
             className={inputClasses}
           />
-          <p className="text-[10px] text-slate-500 mt-1">This date defines when your 28-day "On" rotation starts.</p>
+          <p className="text-[10px] text-slate-500 mt-1">This date defines when your "On" rotation starts.</p>
         </div>
       </section>
 
@@ -96,6 +104,13 @@ const Settings = () => {
           <strong>Note on Tax:</strong> Myanmar progressive tax is automatically calculated when currency is set to MMK. Ensure your rates are entered as gross amounts.
         </p>
       </div>
+
+      <button
+        onClick={() => { if (window.confirm('Reset all data to defaults?')) resetAll(); }}
+        className="w-full py-3 rounded-xl border border-rose-500/30 bg-rose-500/10 text-rose-300 text-sm font-bold hover:bg-rose-500/20 transition-colors"
+      >
+        Reset All Data
+      </button>
     </div>
   );
 };

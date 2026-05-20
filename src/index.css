@@ -17,3 +17,32 @@ body {
 #root {
   min-height: 100vh;
 }
+
+.light body,
+body:has(.light) {
+  background: #f1f5f9;
+  color: #1e293b;
+}
+
+.light {
+  color-scheme: light;
+}
+
+.light .bg-\[\#0b1220\] { background: #f8fafc; }
+.light .bg-\[\#0c1220d9\] { background: #ffffffe6; }
+.light .bg-\[\#0a0e18e6\] { background: #f1f5f9e6; }
+.light .bg-\[\#0f172a\] { background: #ffffff; }
+.light .bg-\[\#1e293b\] { background: #e2e8f0; }
+.light .bg-slate-800\/50 { background: #e2e8f080; }
+.light .bg-gradient-to-b { background-image: linear-gradient(to bottom, #f8fafc, #f1f5f9); }
+.light .from-\[\#0b1220\] { --tw-gradient-from: #f8fafc; }
+.light .to-\[\#0d1528\] { --tw-gradient-to: #f1f5f9; }
+.light .text-slate-100 { color: #1e293b; }
+.light .text-slate-300 { color: #334155; }
+.light .text-slate-400 { color: #475569; }
+.light .text-slate-500 { color: #64748b; }
+.light .text-slate-600 { color: #94a3b8; }
+.light .border-slate-800 { border-color: #cbd5e1; }
+.light .border-slate-700 { border-color: #cbd5e1; }
+.light .ring-offset-\[\#0b1220\] { --tw-ring-offset-color: #f8fafc; }
+.light .hover\:bg-slate-800:hover { background: #e2e8f0; }

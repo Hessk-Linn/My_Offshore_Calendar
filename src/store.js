@@ -8,6 +8,7 @@ export const useStore = create(
       anchorDate: new Date().toISOString().split('T')[0],
       rotationOn: 28,
       rotationOff: 28,
+      rotationPreset: '28/28',
       
       // Financial Settings
       normalRate: 0,
@@ -15,6 +16,9 @@ export const useStore = create(
       allowances: 0,
       currency: 'USD',
       
+      // Theme
+      theme: 'dark',
+
       // User Data
       travelDays: [], // Array of ISO date strings
 
@@ -30,6 +34,23 @@ export const useStore = create(
         };
       }),
       setCurrency: (currency) => set({ currency }),
+      setRotationPreset: (preset) => {
+        const [on, off] = preset.split('/').map(Number);
+        set({ rotationPreset: preset, rotationOn: on, rotationOff: off });
+      },
+      setTheme: (theme) => set({ theme }),
+      resetAll: () => set({
+        anchorDate: new Date().toISOString().split('T')[0],
+        rotationOn: 28,
+        rotationOff: 28,
+        rotationPreset: '28/28',
+        normalRate: 0,
+        travelRate: 0,
+        allowances: 0,
+        currency: 'USD',
+        travelDays: [],
+        theme: 'dark',
+      }),
     }),
     {
       name: 'offshore-rotation-storage',

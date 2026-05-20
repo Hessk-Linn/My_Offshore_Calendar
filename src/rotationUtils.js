@@ -61,7 +61,7 @@ export const calculateMyanmarTax = (monthlyGross) => {
 /**
  * Gets stats for a specific month
  */
-export const getMonthStats = (monthDate, anchorDate, travelDays, rates) => {
+export const getMonthStats = (monthDate, anchorDate, travelDays, rates, rotationOn = 28, rotationOff = 28) => {
   const start = startOfMonth(monthDate);
   const end = endOfMonth(monthDate);
   const days = eachDayOfInterval({ start, end });
@@ -71,7 +71,7 @@ export const getMonthStats = (monthDate, anchorDate, travelDays, rates) => {
 
   days.forEach(day => {
     const dateStr = format(day, 'yyyy-MM-dd');
-    const isOn = isWorkDay(day, anchorDate);
+    const isOn = isWorkDay(day, anchorDate, rotationOn, rotationOff);
     const isTravel = travelDays.includes(dateStr);
 
     if (isOn) workDaysCount++;
