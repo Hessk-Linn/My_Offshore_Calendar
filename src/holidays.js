@@ -1,86 +1,102 @@
+// MYANMAR HOLIDAYS - Fixed (Gregorian) and Variable (Lunar-based)
+// ============================================================================
+// LUNAR HOLIDAY CONFIGURATION - Update these dates annually based on official
+// Myanmar government announcements. Thingyan and other lunar holidays shift
+// by 1-2 days each year according to the Burmese lunisolar calendar.
+// ============================================================================
+
+const LUNAR_HOLIDAY_CONFIG = {
+  // Format: 'YYYY': { thingyanStart: DD, thingyanEnd: DD, newYearDay: DD, wasoDay: DD }
+  // Thingyan typically lasts 4 days, followed by New Year's Day
+  2025: { thingyanStart: 13, thingyanEnd: 16, newYearDay: 17, wasoDay: 19, thadingyutStart: 5, tazaungdaingStart: 3 },
+  2026: { thingyanStart: 13, thingyanEnd: 16, newYearDay: 17, wasoDay: 20, thadingyutStart: 24, tazaungdaingStart: 13 },
+  2027: { thingyanStart: 13, thingyanEnd: 16, newYearDay: 17, wasoDay: 20, thadingyutStart: 23, tazaungdaingStart: 12 },
+  // Add more years as needed - check official Myanmar government announcements
+};
+
+// Default lunar holiday dates (used if year not in config above)
+const DEFAULT_LUNAR_DATES = {
+  thingyanStart: 13, thingyanEnd: 16, newYearDay: 17,
+  wasoDay: 20, thadingyutStart: 24, tazaungdaingStart: 13
+};
+
+// ============================================================================
+
+// FIXED HOLIDAYS - These stay the same every year
 const FIXED_HOLIDAYS = [
+  // MYANMAR Fixed Holidays
+  { month: 1, day: 1, name: "New Year's Day", country: 'MM' },
   { month: 1, day: 4, name: 'Independence Day', country: 'MM' },
   { month: 2, day: 12, name: 'Union Day', country: 'MM' },
   { month: 3, day: 2, name: "Peasants' Day", country: 'MM' },
   { month: 3, day: 27, name: 'Armed Forces Day', country: 'MM' },
-  { month: 5, day: 1, name: 'May Day', country: 'MM' },
+  { month: 5, day: 1, name: 'Labour Day', country: 'MM' },
   { month: 7, day: 19, name: "Martyrs' Day", country: 'MM' },
   { month: 12, day: 25, name: 'Christmas Day', country: 'MM' },
-  { month: 1, day: 1, name: "New Year's Day", country: 'US' },
-  { month: 7, day: 4, name: 'Independence Day', country: 'US' },
-  { month: 11, day: 11, name: 'Veterans Day', country: 'US' },
-  { month: 12, day: 25, name: 'Christmas Day', country: 'US' },
-  { month: 1, day: 1, name: "New Year's Day", country: 'UK' },
-  { month: 12, day: 25, name: 'Christmas Day', country: 'UK' },
-  { month: 12, day: 26, name: 'Boxing Day', country: 'UK' },
+  { month: 12, day: 31, name: "New Year's Eve", country: 'MM' },
+
+  // THAILAND Fixed Holidays
   { month: 1, day: 1, name: "New Year's Day", country: 'TH' },
-  { month: 4, day: 6, name: 'Chakri Day', country: 'TH' },
+  { month: 4, day: 6, name: 'Chakri Memorial Day', country: 'TH' },
   { month: 5, day: 4, name: 'Coronation Day', country: 'TH' },
+  { month: 6, day: 3, name: "Queen Suthida's Birthday", country: 'TH' },
   { month: 7, day: 28, name: "HM King's Birthday", country: 'TH' },
   { month: 8, day: 12, name: "HM Queen Mother's Birthday", country: 'TH' },
-  { month: 10, day: 13, name: 'King Bhumibol Memorial', country: 'TH' },
+  { month: 10, day: 13, name: 'King Bhumibol Memorial Day', country: 'TH' },
   { month: 10, day: 23, name: 'Chulalongkorn Day', country: 'TH' },
-  { month: 12, day: 5, name: "HM King's Birthday", country: 'TH' },
+  { month: 12, day: 5, name: "HM King's Birthday (Father's Day)", country: 'TH' },
   { month: 12, day: 10, name: 'Constitution Day', country: 'TH' },
   { month: 12, day: 31, name: "New Year's Eve", country: 'TH' },
 ];
 
-function getNthWeekdayOfMonth(year, month, weekday, n) {
-  let count = 0;
-  for (let d = 1; d <= 31; d++) {
-    const date = new Date(year, month - 1, d);
-    if (date.getMonth() !== month - 1) break;
-    if (date.getDay() === weekday) { count++; if (count === n) return d; }
+/**
+ * Generate Myanmar lunar-based holidays for a specific year
+ * These dates change annually based on the Burmese lunisolar calendar
+ * Update LUNAR_HOLIDAY_CONFIG above with official government announcements
+ */
+function getMyanmarLunarHolidays(year) {
+  const config = LUNAR_HOLIDAY_CONFIG[year] || DEFAULT_LUNAR_DATES;
+  const holidays = [];
+
+  // Thingyan Water Festival (4 days)
+  for (let day = config.thingyanStart; day <= config.thingyanEnd; day++) {
+    holidays.push({ month: 4, day, name: 'Thingyan (Water Festival)', country: 'MM' });
   }
-  return null;
+
+  // Burmese New Year (day after Thingyan)
+  holidays.push({ month: 4, day: config.newYearDay, name: 'Burmese New Year', country: 'MM' });
+
+  // Waso (Buddhist Lent Start)
+  holidays.push({ month: 7, day: config.wasoDay, name: 'Waso (Buddhist Lent Begins)', country: 'MM' });
+
+  // Thadingyut (Lighting Festival - 3 days)
+  holidays.push({ month: 10, day: config.thadingyutStart, name: 'Thadingyut (Lighting Festival)', country: 'MM' });
+  holidays.push({ month: 10, day: config.thadingyutStart + 1, name: 'Thadingyut Holiday', country: 'MM' });
+  holidays.push({ month: 10, day: config.thadingyutStart + 2, name: 'Thadingyut Holiday', country: 'MM' });
+
+  // Tazaungdaing Festival (3 days)
+  holidays.push({ month: 11, day: config.tazaungdaingStart, name: 'Tazaungdaing Festival', country: 'MM' });
+  holidays.push({ month: 11, day: config.tazaungdaingStart + 1, name: 'Tazaungdaing Holiday', country: 'MM' });
+  holidays.push({ month: 11, day: config.tazaungdaingStart + 2, name: 'Tazaungdaing Holiday', country: 'MM' });
+
+  return holidays;
 }
 
-function getLastWeekdayOfMonth(year, month, weekday) {
-  const lastDay = new Date(year, month, 0);
-  while (lastDay.getDay() !== weekday) lastDay.setDate(lastDay.getDate() - 1);
-  return lastDay.getDate();
-}
-
-function getEasterSunday(year) {
-  const a = year % 19, b = Math.floor(year / 100), c = year % 100;
-  const d = Math.floor(b / 4), e = b % 4, f = Math.floor((b + 8) / 25);
-  const g = Math.floor((b - f + 1) / 3), h = (19 * a + b - d - g + 15) % 30;
-  const i = Math.floor(c / 4), k = c % 4;
-  const l = (32 + 2 * e + 2 * i - h - k) % 7;
-  const m = Math.floor((a + 11 * h + 22 * l) / 451);
-  const month = Math.floor((h + l - 7 * m + 114) / 31);
-  const day = ((h + l - 7 * m + 114) % 31) + 1;
-  return new Date(year, month - 1, day);
-}
-
+/**
+ * Variable holidays - Thailand Songkran (April 13-15 fixed)
+ */
 function getVariableHolidays(year) {
-  const easter = getEasterSunday(year);
-  const gf = new Date(easter); gf.setDate(easter.getDate() - 2);
-  const em = new Date(easter); em.setDate(easter.getDate() + 1);
-  const r = [];
-  const add = (m, d, name, c) => { if (d) r.push({ month: m, day: d, name, country: c }); };
-  add(1, getNthWeekdayOfMonth(year, 1, 1, 3), 'Martin Luther King Jr. Day', 'US');
-  add(2, getNthWeekdayOfMonth(year, 2, 1, 3), "Presidents' Day", 'US');
-  add(5, getLastWeekdayOfMonth(year, 5, 1), 'Memorial Day', 'US');
-  add(9, getNthWeekdayOfMonth(year, 9, 1, 1), 'Labor Day', 'US');
-  add(10, getNthWeekdayOfMonth(year, 10, 1, 2), 'Columbus Day', 'US');
-  add(11, getNthWeekdayOfMonth(year, 11, 4, 4), 'Thanksgiving', 'US');
-  r.push({ month: gf.getMonth() + 1, day: gf.getDate(), name: 'Good Friday', country: 'UK' });
-  r.push({ month: em.getMonth() + 1, day: em.getDate(), name: 'Easter Monday', country: 'UK' });
-  add(5, getNthWeekdayOfMonth(year, 5, 1, 1), 'Early May Bank Holiday', 'UK');
-  add(5, getLastWeekdayOfMonth(year, 5, 1), 'Spring Bank Holiday', 'UK');
-  add(8, getLastWeekdayOfMonth(year, 8, 1), 'Summer Bank Holiday', 'UK');
-  r.push({ month: 4, day: 13, name: 'Songkran Festival', country: 'TH' });
-  r.push({ month: 4, day: 14, name: 'Songkran Festival', country: 'TH' });
-  r.push({ month: 4, day: 15, name: 'Songkran Festival', country: 'TH' });
-  return r;
+  return [
+    // Thailand Songkran
+    { month: 4, day: 13, name: 'Songkran Festival', country: 'TH' },
+    { month: 4, day: 14, name: 'Songkran Festival', country: 'TH' },
+    { month: 4, day: 15, name: 'Songkran Festival', country: 'TH' },
+  ];
 }
 
 export const COUNTRY_COLORS = {
-  MM: { bg: 'bg-yellow-500/25', border: 'border-yellow-500/40', dot: 'bg-yellow-400', label: 'MM' },
-  US: { bg: 'bg-red-500/25', border: 'border-red-500/40', dot: 'bg-red-400', label: 'US' },
-  UK: { bg: 'bg-blue-500/25', border: 'border-blue-500/40', dot: 'bg-blue-400', label: 'UK' },
-  TH: { bg: 'bg-purple-500/25', border: 'border-purple-500/40', dot: 'bg-purple-400', label: 'TH' },
+  MM: { bg: 'bg-yellow-500/25', border: 'border-yellow-500/40', dot: 'bg-yellow-400', label: 'Myanmar' },
+  TH: { bg: 'bg-purple-500/25', border: 'border-purple-500/40', dot: 'bg-purple-400', label: 'Thailand' },
 };
 
 export function getHolidaysForYear(year) {
@@ -88,11 +104,15 @@ export function getHolidaysForYear(year) {
     ...h,
     date: `${year}-${String(h.month).padStart(2, '0')}-${String(h.day).padStart(2, '0')}`,
   }));
+  const lunar = getMyanmarLunarHolidays(year).map(h => ({
+    ...h,
+    date: `${year}-${String(h.month).padStart(2, '0')}-${String(h.day).padStart(2, '0')}`,
+  }));
   const variable = getVariableHolidays(year).map(h => ({
     ...h,
     date: `${year}-${String(h.month).padStart(2, '0')}-${String(h.day).padStart(2, '0')}`,
   }));
-  return [...fixed, ...variable];
+  return [...fixed, ...lunar, ...variable];
 }
 
 export function getHolidaysForMonth(year, month) {

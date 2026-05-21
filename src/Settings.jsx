@@ -5,6 +5,7 @@ const Settings = () => {
   const { 
     anchorDate, setAnchorDate,
     normalRate, travelRate, allowances, currency, setRates, setCurrency,
+    mmkMonthlyAmount, setMmkMonthlyAmount,
     rotationPreset, setRotationPreset, resetAll
   } = useStore();
 
@@ -33,11 +34,11 @@ const Settings = () => {
           <label className={labelClasses}>Anchor Date (Start of "On" Cycle)</label>
           <input 
             type="date" 
-            value={anchorDate} 
+            value={anchorDate || ''} 
             onChange={(e) => setAnchorDate(e.target.value)}
             className={inputClasses}
           />
-          <p className="text-[10px] text-slate-500 mt-1">This date defines when your "On" rotation starts.</p>
+          <p className="text-[10px] text-slate-500 mt-1">{anchorDate ? 'Rotation starts from this date.' : 'Select a date to start your rotation schedule.'}</p>
         </div>
       </section>
 
@@ -96,12 +97,24 @@ const Settings = () => {
               placeholder="0.00"
             />
           </div>
+
+          <div className="col-span-2">
+            <label className={labelClasses}>MMK Monthly Amount (for Tax Calc)</label>
+            <input 
+              type="number" 
+              value={mmkMonthlyAmount} 
+              onChange={(e) => setMmkMonthlyAmount(parseFloat(e.target.value) || 0)}
+              className={inputClasses}
+              placeholder="0"
+            />
+            <p className="text-[10px] text-slate-500 mt-1">Enter your monthly income in MMK for Myanmar tax calculation. Used when your currency is USD but tax is calculated in MMK.</p>
+          </div>
         </div>
       </section>
 
       <div className="bg-sky-500/10 border border-sky-500/20 rounded-xl p-4">
         <p className="text-xs text-sky-200/70 leading-relaxed">
-          <strong>Note on Tax:</strong> Myanmar progressive tax is automatically calculated when currency is set to MMK. Ensure your rates are entered as gross amounts.
+          <strong>Note on Tax:</strong> Enter your monthly income in MMK for tax reference. Tax calculation uses progressive Myanmar brackets. Tax is calculated separately from your USD income and not shown in earnings reports due to currency mismatch.
         </p>
       </div>
 

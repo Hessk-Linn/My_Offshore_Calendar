@@ -14,16 +14,16 @@ const containerClasses =
 const headerClasses =
   'sticky top-0 z-10 backdrop-blur bg-[#0c1220d9] border-b border-slate-800';
 
-const headerInner = 'flex items-center justify-between px-4 py-3 md:px-5';
+const headerInner = 'flex items-center justify-between px-4 pt-3 pb-1 md:px-5';
 
 const badge =
   'px-2.5 py-1 rounded-md border border-sky-500/25 bg-sky-500/10 text-sky-200 text-[10px] font-bold uppercase tracking-wider';
 
-const tabBar =
-  'sticky bottom-0 z-10 grid grid-cols-3 bg-[#0a0e18e6] border-t border-slate-800 backdrop-blur pb-safe';
+const tabNav =
+  'grid grid-cols-3 bg-[#0a0e1899] border-b border-slate-800 backdrop-blur-sm pb-1';
 
 const tabBtnBase =
-  'appearance-none bg-none border-0 text-slate-500 hover:text-slate-100 transition-colors text-[10px] font-bold uppercase tracking-widest flex flex-col gap-1 items-center justify-center py-4';
+  'appearance-none bg-none border-0 text-slate-500 hover:text-slate-100 transition-colors text-[10px] font-bold uppercase tracking-widest flex flex-col gap-1 items-center justify-center py-2.5';
 
 function App() {
   const [activeTab, setActiveTab] = useState('calendar');
@@ -52,6 +52,30 @@ function App() {
               <div className={badge}>v1.0</div>
             </div>
           </div>
+          
+          <nav className={tabNav} aria-label="Primary tabs">
+            <button 
+              onClick={() => setActiveTab('calendar')}
+              className={`${tabBtnBase} ${activeTab === 'calendar' ? 'text-amber-400' : ''}`}
+            >
+              <CalendarIcon className={`w-4 h-4 ${activeTab === 'calendar' ? 'text-amber-400' : 'text-slate-500'}`} />
+              <span className="text-[9px]">Calendar</span>
+            </button>
+            <button 
+              onClick={() => setActiveTab('dashboard')}
+              className={`${tabBtnBase} ${activeTab === 'dashboard' ? 'text-sky-400' : ''}`}
+            >
+              <LayoutDashboard className={`w-4 h-4 ${activeTab === 'dashboard' ? 'text-sky-400' : 'text-slate-500'}`} />
+              <span className="text-[9px]">Dashboard</span>
+            </button>
+            <button 
+              onClick={() => setActiveTab('settings')}
+              className={`${tabBtnBase} ${activeTab === 'settings' ? 'text-slate-100' : ''}`}
+            >
+              <SettingsIcon className={`w-4 h-4 ${activeTab === 'settings' ? 'text-slate-100' : 'text-slate-500'}`} />
+              <span className="text-[9px]">Settings</span>
+            </button>
+          </nav>
         </header>
 
         <main className="flex-1 overflow-y-auto px-4 py-6 md:px-6">
@@ -59,30 +83,6 @@ function App() {
           {activeTab === 'dashboard' && <Dashboard />}
           {activeTab === 'settings' && <Settings />}
         </main>
-
-        <nav className={tabBar} aria-label="Primary tabs">
-          <button 
-            onClick={() => setActiveTab('calendar')}
-            className={`${tabBtnBase} ${activeTab === 'calendar' ? 'text-amber-400' : ''}`}
-          >
-            <CalendarIcon className={`w-5 h-5 ${activeTab === 'calendar' ? 'text-amber-400' : 'text-slate-500'}`} />
-            <span>Calendar</span>
-          </button>
-          <button 
-            onClick={() => setActiveTab('dashboard')}
-            className={`${tabBtnBase} ${activeTab === 'dashboard' ? 'text-sky-400' : ''}`}
-          >
-            <LayoutDashboard className={`w-5 h-5 ${activeTab === 'dashboard' ? 'text-sky-400' : 'text-slate-500'}`} />
-            <span>Dashboard</span>
-          </button>
-          <button 
-            onClick={() => setActiveTab('settings')}
-            className={`${tabBtnBase} ${activeTab === 'settings' ? 'text-slate-100' : ''}`}
-          >
-            <SettingsIcon className={`w-5 h-5 ${activeTab === 'settings' ? 'text-slate-100' : 'text-slate-500'}`} />
-            <span>Settings</span>
-          </button>
-        </nav>
       </div>
     </div>
   );

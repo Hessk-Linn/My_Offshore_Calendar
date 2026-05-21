@@ -2,14 +2,28 @@ import React,{useState}from'react';
 import{useStore}from'./store';
 import{getMonthStats,isWorkDay}from'./rotationUtils';
 import{format,addDays,differenceInDays,addMonths,subMonths}from'date-fns';
-import{TrendingUp,Wallet,Clock,ShieldCheck,ChevronLeft,ChevronRight}from'lucide-react';
+import{TrendingUp,Clock,ShieldCheck,ChevronLeft,ChevronRight}from'lucide-react';
 import AnnualProjection from'./AnnualProjection';
 
 export default function Dashboard(){
-const{anchorDate,travelDays,normalRate,travelRate,allowances,currency,rotationOn,rotationOff}=useStore();
+const{anchorDate,travelDays,normalRate,travelRate,allowances,currency,mmkMonthlyAmount,rotationOn,rotationOff}=useStore();
 const[dm,setDm]=useState(new Date());
 const r={normalRate,travelRate,allowances,currency};
-const st=getMonthStats(dm,anchorDate,travelDays,r,rotationOn,rotationOff);
+
+// Show setup message if no anchor date set
+if(!anchorDate){
+return(
+<div className="space-y-6 p-4">
+<div className="bg-slate-800/50 border border-slate-700 rounded-2xl p-8 text-center">
+<h3 className="text-lg font-bold text-slate-300 mb-2">Welcome!</h3>
+<p className="text-slate-400 text-sm mb-4">Please set your anchor date in Settings to start tracking your rotation schedule.</p>
+<a href="#settings" onClick={()=>window.dispatchEvent(new CustomEvent('navigate',{detail:'settings'}))} className="inline-block px-4 py-2 bg-sky-500/20 text-sky-400 rounded-lg text-sm font-medium hover:bg-sky-500/30 transition-colors">Go to Settings</a>
+</div>
+</div>
+);
+}
+
+const st=getMonthStats(dm,anchorDate,travelDays,r,rotationOn,rotationOff,mmkMonthlyAmount);
 let ncc=new Date(),f=0,sf=0;
 const co=isWorkDay(ncc,anchorDate,rotationOn,rotationOff);
 while(!f&&sf<100){ncc=addDays(ncc,1);if(isWorkDay(ncc,anchorDate,rotationOn,rotationOff)!==co)f=1;sf++}
@@ -38,14 +52,12 @@ return(
 <div className="w-12 h-12 rounded-full bg-emerald-500/10 flex items-center justify-center text-emerald-400"><TrendingUp className="w-6 h-6"/></div>
 <div><p className="text-slate-400 text-xs uppercase tracking-wider font-bold">Monthly Gross</p><p className="text-xl font-bold text-slate-100">{fc(st.gross)}</p></div>
 </div>
+{st.tax > 0 && (
 <div className="bg-[#0f172a] border border-slate-800 rounded-xl p-5 flex items-center gap-4">
 <div className="w-12 h-12 rounded-full bg-rose-500/10 flex items-center justify-center text-rose-400"><ShieldCheck className="w-6 h-6"/></div>
-<div><p className="text-slate-400 text-xs uppercase tracking-wider font-bold">Myanmar Tax (Est.)</p><p className="text-xl font-bold text-slate-100">{fc(st.tax)}</p></div>
+<div><p className="text-slate-400 text-xs uppercase tracking-wider font-bold">This Month Income Tax (MMK)</p><p className="text-xl font-bold text-slate-100">{st.tax.toLocaleString()} MMK</p></div>
 </div>
-<div className="bg-gradient-to-r from-sky-500/10 to-blue-600/10 border border-sky-500/20 rounded-xl p-5 flex items-center gap-4">
-<div className="w-12 h-12 rounded-full bg-sky-500/20 flex items-center justify-center text-sky-400"><Wallet className="w-6 h-6"/></div>
-<div><p className="text-sky-200/70 text-xs uppercase tracking-wider font-bold">Estimated Net Pay</p><p className="text-2xl font-black text-white">{fc(st.net)}</p></div>
-</div>
+)}
 </div>
 <div className="bg-[#0f172a] border border-slate-800 rounded-xl p-4">
 <h3 className="text-sm font-semibold text-slate-300 mb-3">Month Breakdown ({format(dm,'MMMM')})</h3>

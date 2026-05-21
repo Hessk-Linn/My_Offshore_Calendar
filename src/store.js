@@ -15,6 +15,7 @@ export const useStore = create(
       travelRate: 0,
       allowances: 0,
       currency: 'USD',
+      mmkMonthlyAmount: 0, // Manual MMK amount for tax calculation when currency is USD
       
       // Theme
       theme: 'dark',
@@ -25,6 +26,7 @@ export const useStore = create(
       // Actions
       setAnchorDate: (date) => set({ anchorDate: date }),
       setRates: (rates) => set((state) => ({ ...state, ...rates })),
+      setMmkMonthlyAmount: (amount) => set({ mmkMonthlyAmount: amount }),
       toggleTravelDay: (date) => set((state) => {
         const exists = state.travelDays.includes(date);
         return {
@@ -40,7 +42,7 @@ export const useStore = create(
       },
       setTheme: (theme) => set({ theme }),
       resetAll: () => set({
-        anchorDate: new Date().toISOString().split('T')[0],
+        anchorDate: '',
         rotationOn: 28,
         rotationOff: 28,
         rotationPreset: '28/28',
@@ -48,6 +50,7 @@ export const useStore = create(
         travelRate: 0,
         allowances: 0,
         currency: 'USD',
+        mmkMonthlyAmount: 0,
         travelDays: [],
         theme: 'dark',
       }),
