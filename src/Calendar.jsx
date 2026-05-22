@@ -1,33 +1,32 @@
-import React, { useState, useEffect, useCallback, useMemo } from 'react';
-import { format, addMonths, subMonths, startOfMonth, endOfMonth, startOfWeek, endOfWeek, eachDayOfInterval, isSameMonth, isToday, parseISO, differenceInDays } from 'date-fns';
+import React, { useState, useEffect, useCallback, useMemo, useRef } from 'react';
+import { format, addMonths, subMonths, startOfMonth, endOfMonth, startOfWeek, endOfWeek, eachDayOfInterval, isSameMonth, isToday } from 'date-fns';
 import { useStore } from './store';
 import { getHolidaysForMonth, COUNTRY_COLORS } from './holidays';
+import { isWorkDay, isTravelDayAuto } from './rotationUtils';
 import { ChevronLeft, ChevronRight, Plane } from 'lucide-react';
-
-// Check if day is first day of on-rotation or first day of off-rotation
-function isTravelDayAuto(day, anchorDate, onDays, offDays) {
-  const start = parseISO(anchorDate);
-  const diff = differenceInDays(day, start);
-  const cycle = onDays + offDays;
-  const position = ((diff % cycle) + cycle) % cycle;
-  // Day 0 is first day of on-rotation, day onDays is first day of off-rotation
-  return position === 0 || position === onDays;
-}
-
-function isWorkDay(day, anchorDate, onDays, offDays) {
-  const start = parseISO(anchorDate);
-  const diff = differenceInDays(day, start);
-  const cycle = onDays + offDays;
-  const position = ((diff % cycle) + cycle) % cycle;
-  return position < onDays;
-}
 
 export default function Calendar() {
   const [cm, setCm] = useState(new Date());
-  const { anchorDate, rotationOn, rotationOff } = useStore();
+  const { anchorDate, rotationOn, rotationOff, travelDays, toggleTravelDay } = useStore();
   const nm = useCallback(() => setCm(addMonths(cm, 1)), [cm]);
   const pm = useCallback(() => setCm(subMonths(cm, 1)), [cm]);
   const td = () => setCm(new Date());
+  
+  const lastTapRef = useRef({});
+
+  const handleDayTap = (dateStr) => {
+    if (!anchorDate) return;
+    const now = Date.now();
+    const DOUBLE_PRESS_DELAY = 300;
+    const lastTap = lastTapRef.current[dateStr] || 0;
+    if (now - lastTap < DOUBLE_PRESS_DELAY) {
+      toggleTravelDay(dateStr);
+      delete lastTapRef.current[dateStr];
+    } else {
+      lastTapRef.current[dateStr] = now;
+    }
+  };
+
   useEffect(() => {
     const h = (e) => { if (e.key === 'ArrowLeft') pm(); else if (e.key === 'ArrowRight') nm(); };
     window.addEventListener('keydown', h);
@@ -52,9 +51,13 @@ export default function Calendar() {
           <button onClick={nm} className="p-2 hover:bg-slate-800 rounded-full transition-colors"><ChevronRight className="w-5 h-5" /></button>
         </div>
       </div>
-      {!anchorDate && (
+      {!anchorDate ? (
         <div className="bg-sky-500/10 border border-sky-500/20 rounded-lg p-3 text-center mb-2">
           <p className="text-xs text-sky-200/70">Set anchor date in Settings to see rotation schedule</p>
+        </div>
+      ) : (
+        <div className="bg-slate-800/30 border border-slate-800/40 rounded-lg p-2.5 text-center mb-2">
+          <p className="text-[10px] text-slate-400">💡 <strong>Double-tap</strong> any day to manually toggle <strong>Travel Day (✈️)</strong></p>
         </div>
       )}
       <div className="grid grid-cols-7 gap-1">
@@ -62,12 +65,22 @@ export default function Calendar() {
         {days.map((day, i) => {
           const ds = format(day, 'yyyy-MM-dd');
           const on = anchorDate ? isWorkDay(day, anchorDate, rotationOn, rotationOff) : false;
-          const tr = anchorDate ? isTravelDayAuto(day, anchorDate, rotationOn, rotationOff) : false;
+          // Travel day is defined as auto-travel-day XOR manually-toggled (so toggling flips the state)
+          const tr = anchorDate ? (isTravelDayAuto(day, anchorDate, rotationOn, rotationOff) !== travelDays.includes(ds)) : false;
           const cmo = isSameMonth(day, ms);
           const hol = hm[ds];
           const we = day.getDay() === 0 || day.getDay() === 6;
-          // Always red font for weekend or holiday
-          const isRedFont = we || hol;
+
+          // Determine text color based on holiday, weekend, and month focus
+          let textColor = 'text-slate-100';
+          if (!cmo) {
+            textColor = 'text-slate-600'; // Out-of-month days
+          } else if (hol) {
+            textColor = 'text-red-600 font-extrabold underline underline-offset-2 decoration-red-500/40'; // Deep, rich blood-red for holidays with solid bold underlines
+          } else if (we) {
+            textColor = 'text-rose-300/70'; // Soft pale rose for weekends
+          }
+
           let bg = 'bg-transparent', bc = 'border-transparent';
           if (anchorDate) {
             if (tr) { bg = 'bg-sky-500/40'; bc = 'border-sky-500/50'; }
@@ -78,7 +91,11 @@ export default function Calendar() {
             if (cmo) { bg = 'bg-slate-800/30'; bc = 'border-slate-700/20'; }
           }
           return (
-            <div key={i} className={`relative h-12 flex flex-col items-center justify-center rounded-lg border transition-all ${cmo?'':'text-slate-600'} ${isRedFont?'text-rose-400':'text-slate-100'} ${bg} ${bc} ${isToday(day)?'ring-2 ring-sky-400 ring-offset-2 ring-offset-[#0b1220]':''}`}>
+            <div 
+              key={i} 
+              onClick={() => handleDayTap(ds)}
+              className={`relative h-12 flex flex-col items-center justify-center rounded-lg border transition-all select-none cursor-pointer ${textColor} ${bg} ${bc} ${isToday(day)?'ring-2 ring-sky-400 ring-offset-2 ring-offset-[#0b1220]':''}`}
+            >
               <span className="text-sm font-medium">{format(day, 'd')}</span>
               {tr && <Plane className="absolute bottom-1 w-3 h-3 text-sky-300" />}
             </div>

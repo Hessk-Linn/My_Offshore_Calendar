@@ -22,6 +22,18 @@ export const isWorkDay = (date, anchorDate, onDays = 28, offDays = 28) => {
 };
 
 /**
+ * Calculates if a given date is automatically a travel day (day 1 of On cycle or Day 1 of Off cycle).
+ */
+export const isTravelDayAuto = (date, anchorDate, onDays = 28, offDays = 28) => {
+  if (!anchorDate) return false;
+  const start = parseISO(anchorDate);
+  const diff = differenceInDays(date, start);
+  const cycle = onDays + offDays;
+  const position = ((diff % cycle) + cycle) % cycle;
+  return position === 0 || position === onDays;
+};
+
+/**
  * Calculates Myanmar Income Tax based on monthly income brackets.
  * Brackets (Monthly MMK):
  * 0 - 2,000,000: 0%
@@ -77,7 +89,7 @@ export const getMonthStats = (monthDate, anchorDate, travelDays, rates, rotation
   days.forEach(day => {
     const dateStr = format(day, 'yyyy-MM-dd');
     const isOn = isWorkDay(day, anchorDate, rotationOn, rotationOff);
-    const isTravel = travelDays.includes(dateStr);
+    const isTravel = isTravelDayAuto(day, anchorDate, rotationOn, rotationOff) !== travelDays.includes(dateStr);
 
     if (isOn) workDaysCount++;
     if (isTravel) travelDaysCount++;
