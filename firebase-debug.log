@@ -1,0 +1,225 @@
+[debug] [2026-05-22T13:18:34.930Z] ----------------------------------------------------------------------
+[debug] [2026-05-22T13:18:34.931Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\hessk\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js deploy
+[debug] [2026-05-22T13:18:34.931Z] CLI Version:   15.18.0
+[debug] [2026-05-22T13:18:34.931Z] Platform:      win32
+[debug] [2026-05-22T13:18:34.931Z] Node Version:  v24.15.0
+[debug] [2026-05-22T13:18:34.931Z] Time:          Fri May 22 2026 19:48:34 GMT+0630 (Myanmar Time)
+[debug] [2026-05-22T13:18:34.932Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2026-05-22T13:18:34.933Z] >>> [apiv2][query] GET https://firebase-public.firebaseio.com/cli.json [none]
+[debug] [2026-05-22T13:18:35.702Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2026-05-22T13:18:35.702Z] > authorizing via signed-in user (hessklinn@gmail.com)
+[debug] [2026-05-22T13:18:35.702Z] [iam] checking project myoffshorerotation for permissions ["datastore.indexes.create","datastore.indexes.delete","datastore.indexes.list","datastore.indexes.update","firebase.projects.get","firebasehosting.sites.update"]
+[debug] [2026-05-22T13:18:35.703Z] Checked if tokens are valid: true, expires at: 1779458461993
+[debug] [2026-05-22T13:18:35.703Z] Checked if tokens are valid: true, expires at: 1779458461993
+[debug] [2026-05-22T13:18:35.703Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects/myoffshorerotation:testIamPermissions [none]
+[debug] [2026-05-22T13:18:35.703Z] >>> [apiv2][(partial)header] POST https://cloudresourcemanager.googleapis.com/v1/projects/myoffshorerotation:testIamPermissions  x-goog-user-project=myoffshorerotation
+[debug] [2026-05-22T13:18:35.703Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/myoffshorerotation:testIamPermissions {"permissions":["datastore.indexes.create","datastore.indexes.delete","datastore.indexes.list","datastore.indexes.update","firebase.projects.get","firebasehosting.sites.update"]}
+[debug] [2026-05-22T13:18:43.161Z] *** [apiv2] error from fetch(https://firebase-public.firebaseio.com/cli.json, {"headers":{},"method":"GET"}): FetchError: request to https://firebase-public.firebaseio.com/cli.json failed, reason: 
+[warn] !  Unable to fetch the CLI MOTD and remote config. This is not a fatal error, but may indicate an issue with your network connection. 
+[debug] [2026-05-22T13:18:43.161Z] Failed to fetch MOTD FirebaseError: Failed to make request to https://firebase-public.firebaseio.com/cli.json
+[debug] [2026-05-22T13:18:45.642Z] <<< [apiv2][status] POST https://cloudresourcemanager.googleapis.com/v1/projects/myoffshorerotation:testIamPermissions 200
+[debug] [2026-05-22T13:18:45.642Z] <<< [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/myoffshorerotation:testIamPermissions {"permissions":["datastore.indexes.create","datastore.indexes.delete","datastore.indexes.list","datastore.indexes.update","firebase.projects.get","firebasehosting.sites.update"]}
+[debug] [2026-05-22T13:18:45.642Z] Checked if tokens are valid: true, expires at: 1779458461993
+[debug] [2026-05-22T13:18:45.642Z] Checked if tokens are valid: true, expires at: 1779458461993
+[debug] [2026-05-22T13:18:45.642Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/myoffshorerotation [none]
+[debug] [2026-05-22T13:18:55.368Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/myoffshorerotation 200
+[debug] [2026-05-22T13:18:55.368Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/myoffshorerotation {"projectId":"myoffshorerotation","projectNumber":"544983536880","displayName":"MyOffshoreRotation","name":"projects/myoffshorerotation","resources":{"hostingSite":"myoffshorerotation"},"state":"ACTIVE","etag":"1_6c1c67e4-5bb2-443f-a846-71b77645506e"}
+[info] 
+[info] === Deploying to 'myoffshorerotation'...
+[info] 
+[info] i  deploying firestore, hosting 
+[info] i  firestore: ensuring required API firestore.googleapis.com is enabled... 
+[info] i  firestore: ensuring required API firestore.googleapis.com is enabled... 
+[debug] [2026-05-22T13:18:55.371Z] Checked if tokens are valid: true, expires at: 1779458461993
+[debug] [2026-05-22T13:18:55.371Z] Checked if tokens are valid: true, expires at: 1779458461993
+[debug] [2026-05-22T13:18:55.371Z] >>> [apiv2][query] GET https://firestore.googleapis.com/v1/projects/myoffshorerotation/databases/(default) [none]
+[debug] [2026-05-22T13:19:02.068Z] <<< [apiv2][status] GET https://firestore.googleapis.com/v1/projects/myoffshorerotation/databases/(default) 404
+[debug] [2026-05-22T13:19:02.068Z] <<< [apiv2][body] GET https://firestore.googleapis.com/v1/projects/myoffshorerotation/databases/(default) {"error":{"code":404,"message":"Project 'myoffshorerotation' or database '(default)' does not exist.","status":"NOT_FOUND"}}
+[info] i  firestore: Creating the new Firestore database (default)... 
+[debug] [2026-05-22T13:19:02.069Z] Checked if tokens are valid: true, expires at: 1779458461993
+[debug] [2026-05-22T13:19:02.069Z] Checked if tokens are valid: true, expires at: 1779458461993
+[debug] [2026-05-22T13:19:02.069Z] >>> [apiv2][query] POST https://firestore.googleapis.com/v1/projects/myoffshorerotation/databases databaseId=%28default%29
+[debug] [2026-05-22T13:19:02.069Z] >>> [apiv2][body] POST https://firestore.googleapis.com/v1/projects/myoffshorerotation/databases {"locationId":"nam5","type":"FIRESTORE_NATIVE","databaseEdition":"STANDARD","deleteProtectionState":"DELETE_PROTECTION_DISABLED","pointInTimeRecoveryEnablement":"POINT_IN_TIME_RECOVERY_DISABLED"}
+[debug] [2026-05-22T13:19:04.429Z] <<< [apiv2][status] POST https://firestore.googleapis.com/v1/projects/myoffshorerotation/databases 200
+[debug] [2026-05-22T13:19:04.429Z] <<< [apiv2][body] POST https://firestore.googleapis.com/v1/projects/myoffshorerotation/databases {"name":"projects/myoffshorerotation/databases/(default)/operations/dYGOnBk6YYv9T9qpm2fnnhAqNW1hbgQiBRAbgZu4EAbQwa_ZCAsKJxo","metadata":{"@type":"type.googleapis.com/google.firestore.admin.v1.CreateDatabaseMetadata"},"done":true,"response":{"@type":"type.googleapis.com/google.firestore.admin.v1.Database","name":"projects/myoffshorerotation/databases/(default)","uid":"9ee7679b-a9da-4ffd-8b61-3a199c8e8175","createTime":"2026-05-22T13:19:21.056643Z","updateTime":"2026-05-22T13:19:21.056643Z","locationId":"nam5","type":"FIRESTORE_NATIVE","concurrencyMode":"PESSIMISTIC","versionRetentionPeriod":"3600s","earliestVersionTime":"2026-05-22T13:19:21.056643Z","appEngineIntegrationMode":"DISABLED","keyPrefix":"s","pointInTimeRecoveryEnablement":"POINT_IN_TIME_RECOVERY_DISABLED","deleteProtectionState":"DELETE_PROTECTION_DISABLED","databaseEdition":"STANDARD","freeTier":true,"realtimeUpdatesMode":"REALTIME_UPDATES_MODE_ENABLED","etag":"II6z0IP+zJQDMIOLz4P+zJQD"}}
+[debug] [2026-05-22T13:19:04.429Z] Checked if tokens are valid: true, expires at: 1779458461993
+[debug] [2026-05-22T13:19:04.429Z] Checked if tokens are valid: true, expires at: 1779458461993
+[debug] [2026-05-22T13:19:04.430Z] >>> [apiv2][query] GET https://firestore.googleapis.com/v1/projects/myoffshorerotation/databases/(default)/operations/dYGOnBk6YYv9T9qpm2fnnhAqNW1hbgQiBRAbgZu4EAbQwa_ZCAsKJxo [none]
+[debug] [2026-05-22T13:19:06.149Z] <<< [apiv2][status] GET https://firestore.googleapis.com/v1/projects/myoffshorerotation/databases/(default)/operations/dYGOnBk6YYv9T9qpm2fnnhAqNW1hbgQiBRAbgZu4EAbQwa_ZCAsKJxo 200
+[debug] [2026-05-22T13:19:06.149Z] <<< [apiv2][body] GET https://firestore.googleapis.com/v1/projects/myoffshorerotation/databases/(default)/operations/dYGOnBk6YYv9T9qpm2fnnhAqNW1hbgQiBRAbgZu4EAbQwa_ZCAsKJxo {"name":"projects/myoffshorerotation/databases/(default)/operations/dYGOnBk6YYv9T9qpm2fnnhAqNW1hbgQiBRAbgZu4EAbQwa_ZCAsKJxo","metadata":{"@type":"type.googleapis.com/google.firestore.admin.v1.CreateDatabaseMetadata"},"done":true,"response":{"@type":"type.googleapis.com/google.firestore.admin.v1.Database","name":"projects/myoffshorerotation/databases/(default)","uid":"9ee7679b-a9da-4ffd-8b61-3a199c8e8175","createTime":"2026-05-22T13:19:21.056643Z","updateTime":"2026-05-22T13:19:21.056643Z","locationId":"nam5","type":"FIRESTORE_NATIVE","concurrencyMode":"PESSIMISTIC","versionRetentionPeriod":"3600s","earliestVersionTime":"2026-05-22T13:19:21.056643Z","appEngineIntegrationMode":"DISABLED","keyPrefix":"s","pointInTimeRecoveryEnablement":"POINT_IN_TIME_RECOVERY_DISABLED","deleteProtectionState":"DELETE_PROTECTION_DISABLED","databaseEdition":"STANDARD","freeTier":true,"realtimeUpdatesMode":"REALTIME_UPDATES_MODE_ENABLED","etag":"IOGXuoT+zJQDMMmO8YP+zJQD"}}
+[info] i  cloud.firestore: checking firestore.rules for compilation errors... 
+[debug] [2026-05-22T13:19:06.151Z] Checked if tokens are valid: true, expires at: 1779458461993
+[debug] [2026-05-22T13:19:06.151Z] Checked if tokens are valid: true, expires at: 1779458461993
+[debug] [2026-05-22T13:19:06.151Z] >>> [apiv2][query] POST https://firebaserules.googleapis.com/v1/projects/myoffshorerotation:test [none]
+[debug] [2026-05-22T13:19:06.151Z] >>> [apiv2][body] POST https://firebaserules.googleapis.com/v1/projects/myoffshorerotation:test [omitted]
+[debug] [2026-05-22T13:19:18.864Z] <<< [apiv2][status] POST https://firebaserules.googleapis.com/v1/projects/myoffshorerotation:test 200
+[debug] [2026-05-22T13:19:18.864Z] <<< [apiv2][body] POST https://firebaserules.googleapis.com/v1/projects/myoffshorerotation:test {}
+[info] +  cloud.firestore: rules file firestore.rules compiled successfully 
+[debug] [2026-05-22T13:19:18.865Z] Checked if tokens are valid: true, expires at: 1779458461993
+[debug] [2026-05-22T13:19:18.865Z] Checked if tokens are valid: true, expires at: 1779458461993
+[debug] [2026-05-22T13:19:18.865Z] >>> [apiv2][query] GET https://firebasehosting.googleapis.com/v1beta1/projects/myoffshorerotation/sites/myoffshorerotation [none]
+[debug] [2026-05-22T13:19:28.886Z] <<< [apiv2][status] GET https://firebasehosting.googleapis.com/v1beta1/projects/myoffshorerotation/sites/myoffshorerotation 200
+[debug] [2026-05-22T13:19:28.886Z] <<< [apiv2][body] GET https://firebasehosting.googleapis.com/v1beta1/projects/myoffshorerotation/sites/myoffshorerotation {"name":"projects/myoffshorerotation/sites/myoffshorerotation","defaultUrl":"https://myoffshorerotation.web.app","appId":"1:544983536880:web:009e1f8c8b86dea6265e35","type":"DEFAULT_SITE"}
+[debug] [2026-05-22T13:19:28.888Z] Checked if tokens are valid: true, expires at: 1779458461993
+[debug] [2026-05-22T13:19:28.888Z] Checked if tokens are valid: true, expires at: 1779458461993
+[debug] [2026-05-22T13:19:28.888Z] >>> [apiv2][query] POST https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/myoffshorerotation/versions [none]
+[debug] [2026-05-22T13:19:28.888Z] >>> [apiv2][body] POST https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/myoffshorerotation/versions {"status":"CREATED","labels":{"deployment-tool":"cli-firebase"}}
+[debug] [2026-05-22T13:19:31.871Z] <<< [apiv2][status] POST https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/myoffshorerotation/versions 200
+[debug] [2026-05-22T13:19:31.871Z] <<< [apiv2][body] POST https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/myoffshorerotation/versions {"name":"projects/544983536880/sites/myoffshorerotation/versions/f361303855e13f74","status":"CREATED","config":{},"labels":{"deployment-tool":"cli-firebase"}}
+[debug] [2026-05-22T13:19:39.834Z] Checked if tokens are valid: true, expires at: 1779458461993
+[debug] [2026-05-22T13:19:39.834Z] Checked if tokens are valid: true, expires at: 1779458461993
+[debug] [2026-05-22T13:19:39.834Z] >>> [apiv2][query] GET https://firebaserules.googleapis.com/v1/projects/myoffshorerotation/releases pageSize=10&pageToken=
+[debug] [2026-05-22T13:19:50.565Z] <<< [apiv2][status] GET https://firebaserules.googleapis.com/v1/projects/myoffshorerotation/releases 200
+[debug] [2026-05-22T13:19:50.565Z] <<< [apiv2][body] GET https://firebaserules.googleapis.com/v1/projects/myoffshorerotation/releases {}
+[info] i  firestore: uploading rules firestore.rules... 
+[debug] [2026-05-22T13:19:50.565Z] Checked if tokens are valid: true, expires at: 1779458461993
+[debug] [2026-05-22T13:19:50.565Z] Checked if tokens are valid: true, expires at: 1779458461993
+[debug] [2026-05-22T13:19:50.565Z] >>> [apiv2][query] POST https://firebaserules.googleapis.com/v1/projects/myoffshorerotation/rulesets [none]
+[debug] [2026-05-22T13:19:50.565Z] >>> [apiv2][body] POST https://firebaserules.googleapis.com/v1/projects/myoffshorerotation/rulesets [omitted]
+[debug] [2026-05-22T13:19:52.931Z] <<< [apiv2][status] POST https://firebaserules.googleapis.com/v1/projects/myoffshorerotation/rulesets 200
+[debug] [2026-05-22T13:19:52.932Z] <<< [apiv2][body] POST https://firebaserules.googleapis.com/v1/projects/myoffshorerotation/rulesets {"name":"projects/myoffshorerotation/rulesets/5775a44b-56ad-42a8-90f1-c5ff251546af","source":{"files":[{"content":"rules_version = '2';\n\nservice cloud.firestore {\n  match /databases/{database}/documents {\n    // Rules for individual user profiles and offshore calendar settings\n    match /users/{userId} {\n      allow read, write: if request.auth != null && request.auth.uid == userId;\n    }\n  }\n}\n","name":"firestore.rules"}]},"createTime":"2026-05-22T13:20:09.952137Z","metadata":{"services":["cloud.firestore"]}}
+[debug] [2026-05-22T13:19:52.932Z] [rules] created ruleset projects/myoffshorerotation/rulesets/5775a44b-56ad-42a8-90f1-c5ff251546af
+[info] i  firestore: deploying indexes... 
+[info] i  hosting[myoffshorerotation]: beginning deploy... 
+[info] i  hosting[myoffshorerotation]: found 10 files in dist 
+[debug] [2026-05-22T13:19:52.941Z] [hosting] uploading with 200 concurrency
+[debug] [2026-05-22T13:19:52.941Z] [hosting] hash cache [ZGlzdA] not populated
+[debug] [2026-05-22T13:19:52.961Z] Checked if tokens are valid: true, expires at: 1779458461993
+[debug] [2026-05-22T13:19:52.962Z] Checked if tokens are valid: true, expires at: 1779458461993
+[debug] [2026-05-22T13:19:52.962Z] [hosting] hash cache [ZGlzdA] stored for 10 files
+[debug] [2026-05-22T13:19:52.962Z] [hosting][hash queue][FINAL] {"max":18,"min":2,"avg":4.4,"active":0,"complete":10,"success":10,"errored":0,"retried":0,"total":10,"elapsed":20}
+[debug] [2026-05-22T13:19:52.963Z] >>> [apiv2][query] POST https://firebasehosting.googleapis.com/v1beta1/projects/544983536880/sites/myoffshorerotation/versions/f361303855e13f74:populateFiles [none]
+[debug] [2026-05-22T13:19:52.963Z] >>> [apiv2][body] POST https://firebasehosting.googleapis.com/v1beta1/projects/544983536880/sites/myoffshorerotation/versions/f361303855e13f74:populateFiles {"files":{"/registerSW.js":"09e15d1438017c065a3281739cb5506aeaf7b3047bc3ada992da01d4497c2d43","/manifest.json":"cf0ef844d4705c5c11f9b3c127fe7688f5bd27770c831e9dddd11c2a9f8dafca","/manifest.webmanifest":"7897e07dc9ad912abfa3a242928fa768bf73c77fdbbd304a77012598c69d2a46","/index.html":"07c2b739e98adfb41994cb9a8ca1cad777a9904e51013d6a90bbe368de83feb7","/icons/icon-512.svg":"20d5577c95a18804d3161a267ef038b6755640f8a920006116a0f0d58b907079","/icons/icon-192.svg":"7321eab0884fca12dc2ff36fa45469f8bcf8ad003cf370906f7a886516845a49","/workbox-b5db860c.js":"3f7c6619ba6e295aff85623fd014f5ac6c51e6267e9190669a3fcec12084e471","/sw.js":"8ca897bd8e18b1c1c36c5b29072cbb52f8b1ac1a8c117478f816be84425ccbee","/assets/index-CrLvZfqL.css":"b3c83e6f49304f2e2da50b15a342c3f1669d0c83fa096e91a1c1733ad4427f2d","/assets/index-DUQwLB31.js":"87a508a87c7878c1ccd22a56edeb68f977b12b57b20abff690ad918b0f3ea233"}}
+[debug] [2026-05-22T13:20:02.630Z] <<< [apiv2][status] POST https://firebasehosting.googleapis.com/v1beta1/projects/544983536880/sites/myoffshorerotation/versions/f361303855e13f74:populateFiles 200
+[debug] [2026-05-22T13:20:02.630Z] <<< [apiv2][body] POST https://firebasehosting.googleapis.com/v1beta1/projects/544983536880/sites/myoffshorerotation/versions/f361303855e13f74:populateFiles {"uploadRequiredHashes":["09e15d1438017c065a3281739cb5506aeaf7b3047bc3ada992da01d4497c2d43","3f7c6619ba6e295aff85623fd014f5ac6c51e6267e9190669a3fcec12084e471","87a508a87c7878c1ccd22a56edeb68f977b12b57b20abff690ad918b0f3ea233","cf0ef844d4705c5c11f9b3c127fe7688f5bd27770c831e9dddd11c2a9f8dafca","7897e07dc9ad912abfa3a242928fa768bf73c77fdbbd304a77012598c69d2a46","20d5577c95a18804d3161a267ef038b6755640f8a920006116a0f0d58b907079","07c2b739e98adfb41994cb9a8ca1cad777a9904e51013d6a90bbe368de83feb7","8ca897bd8e18b1c1c36c5b29072cbb52f8b1ac1a8c117478f816be84425ccbee","7321eab0884fca12dc2ff36fa45469f8bcf8ad003cf370906f7a886516845a49","b3c83e6f49304f2e2da50b15a342c3f1669d0c83fa096e91a1c1733ad4427f2d"],"uploadUrl":"https://upload-firebasehosting.googleapis.com/upload/sites/myoffshorerotation/versions/f361303855e13f74/files"}
+[debug] [2026-05-22T13:20:02.630Z] Checked if tokens are valid: true, expires at: 1779458461993
+[debug] [2026-05-22T13:20:02.631Z] Checked if tokens are valid: true, expires at: 1779458461993
+[debug] [2026-05-22T13:20:02.631Z] Checked if tokens are valid: true, expires at: 1779458461993
+[debug] [2026-05-22T13:20:02.631Z] Checked if tokens are valid: true, expires at: 1779458461993
+[debug] [2026-05-22T13:20:02.631Z] Checked if tokens are valid: true, expires at: 1779458461993
+[debug] [2026-05-22T13:20:02.631Z] Checked if tokens are valid: true, expires at: 1779458461993
+[debug] [2026-05-22T13:20:02.631Z] Checked if tokens are valid: true, expires at: 1779458461993
+[debug] [2026-05-22T13:20:02.631Z] Checked if tokens are valid: true, expires at: 1779458461993
+[debug] [2026-05-22T13:20:02.631Z] Checked if tokens are valid: true, expires at: 1779458461993
+[debug] [2026-05-22T13:20:02.631Z] Checked if tokens are valid: true, expires at: 1779458461993
+[debug] [2026-05-22T13:20:02.631Z] Checked if tokens are valid: true, expires at: 1779458461993
+[debug] [2026-05-22T13:20:02.631Z] Checked if tokens are valid: true, expires at: 1779458461993
+[debug] [2026-05-22T13:20:02.631Z] Checked if tokens are valid: true, expires at: 1779458461993
+[debug] [2026-05-22T13:20:02.631Z] Checked if tokens are valid: true, expires at: 1779458461993
+[debug] [2026-05-22T13:20:02.631Z] Checked if tokens are valid: true, expires at: 1779458461993
+[debug] [2026-05-22T13:20:02.631Z] Checked if tokens are valid: true, expires at: 1779458461993
+[debug] [2026-05-22T13:20:02.631Z] Checked if tokens are valid: true, expires at: 1779458461993
+[debug] [2026-05-22T13:20:02.631Z] Checked if tokens are valid: true, expires at: 1779458461993
+[debug] [2026-05-22T13:20:02.631Z] Checked if tokens are valid: true, expires at: 1779458461993
+[debug] [2026-05-22T13:20:02.631Z] Checked if tokens are valid: true, expires at: 1779458461993
+[debug] [2026-05-22T13:20:02.631Z] >>> [apiv2][query] POST https://upload-firebasehosting.googleapis.com/upload/sites/myoffshorerotation/versions/f361303855e13f74/files/09e15d1438017c065a3281739cb5506aeaf7b3047bc3ada992da01d4497c2d43 [none]
+[debug] [2026-05-22T13:20:02.631Z] >>> [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/myoffshorerotation/versions/f361303855e13f74/files/09e15d1438017c065a3281739cb5506aeaf7b3047bc3ada992da01d4497c2d43 [stream]
+[debug] [2026-05-22T13:20:02.633Z] >>> [apiv2][query] POST https://upload-firebasehosting.googleapis.com/upload/sites/myoffshorerotation/versions/f361303855e13f74/files/3f7c6619ba6e295aff85623fd014f5ac6c51e6267e9190669a3fcec12084e471 [none]
+[debug] [2026-05-22T13:20:02.633Z] >>> [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/myoffshorerotation/versions/f361303855e13f74/files/3f7c6619ba6e295aff85623fd014f5ac6c51e6267e9190669a3fcec12084e471 [stream]
+[debug] [2026-05-22T13:20:02.633Z] >>> [apiv2][query] POST https://upload-firebasehosting.googleapis.com/upload/sites/myoffshorerotation/versions/f361303855e13f74/files/87a508a87c7878c1ccd22a56edeb68f977b12b57b20abff690ad918b0f3ea233 [none]
+[debug] [2026-05-22T13:20:02.634Z] >>> [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/myoffshorerotation/versions/f361303855e13f74/files/87a508a87c7878c1ccd22a56edeb68f977b12b57b20abff690ad918b0f3ea233 [stream]
+[debug] [2026-05-22T13:20:02.634Z] >>> [apiv2][query] POST https://upload-firebasehosting.googleapis.com/upload/sites/myoffshorerotation/versions/f361303855e13f74/files/cf0ef844d4705c5c11f9b3c127fe7688f5bd27770c831e9dddd11c2a9f8dafca [none]
+[debug] [2026-05-22T13:20:02.634Z] >>> [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/myoffshorerotation/versions/f361303855e13f74/files/cf0ef844d4705c5c11f9b3c127fe7688f5bd27770c831e9dddd11c2a9f8dafca [stream]
+[debug] [2026-05-22T13:20:02.634Z] >>> [apiv2][query] POST https://upload-firebasehosting.googleapis.com/upload/sites/myoffshorerotation/versions/f361303855e13f74/files/7897e07dc9ad912abfa3a242928fa768bf73c77fdbbd304a77012598c69d2a46 [none]
+[debug] [2026-05-22T13:20:02.634Z] >>> [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/myoffshorerotation/versions/f361303855e13f74/files/7897e07dc9ad912abfa3a242928fa768bf73c77fdbbd304a77012598c69d2a46 [stream]
+[debug] [2026-05-22T13:20:02.635Z] >>> [apiv2][query] POST https://upload-firebasehosting.googleapis.com/upload/sites/myoffshorerotation/versions/f361303855e13f74/files/20d5577c95a18804d3161a267ef038b6755640f8a920006116a0f0d58b907079 [none]
+[debug] [2026-05-22T13:20:02.635Z] >>> [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/myoffshorerotation/versions/f361303855e13f74/files/20d5577c95a18804d3161a267ef038b6755640f8a920006116a0f0d58b907079 [stream]
+[debug] [2026-05-22T13:20:02.635Z] >>> [apiv2][query] POST https://upload-firebasehosting.googleapis.com/upload/sites/myoffshorerotation/versions/f361303855e13f74/files/07c2b739e98adfb41994cb9a8ca1cad777a9904e51013d6a90bbe368de83feb7 [none]
+[debug] [2026-05-22T13:20:02.635Z] >>> [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/myoffshorerotation/versions/f361303855e13f74/files/07c2b739e98adfb41994cb9a8ca1cad777a9904e51013d6a90bbe368de83feb7 [stream]
+[debug] [2026-05-22T13:20:02.636Z] >>> [apiv2][query] POST https://upload-firebasehosting.googleapis.com/upload/sites/myoffshorerotation/versions/f361303855e13f74/files/8ca897bd8e18b1c1c36c5b29072cbb52f8b1ac1a8c117478f816be84425ccbee [none]
+[debug] [2026-05-22T13:20:02.636Z] >>> [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/myoffshorerotation/versions/f361303855e13f74/files/8ca897bd8e18b1c1c36c5b29072cbb52f8b1ac1a8c117478f816be84425ccbee [stream]
+[debug] [2026-05-22T13:20:02.636Z] >>> [apiv2][query] POST https://upload-firebasehosting.googleapis.com/upload/sites/myoffshorerotation/versions/f361303855e13f74/files/7321eab0884fca12dc2ff36fa45469f8bcf8ad003cf370906f7a886516845a49 [none]
+[debug] [2026-05-22T13:20:02.636Z] >>> [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/myoffshorerotation/versions/f361303855e13f74/files/7321eab0884fca12dc2ff36fa45469f8bcf8ad003cf370906f7a886516845a49 [stream]
+[debug] [2026-05-22T13:20:02.637Z] >>> [apiv2][query] POST https://upload-firebasehosting.googleapis.com/upload/sites/myoffshorerotation/versions/f361303855e13f74/files/b3c83e6f49304f2e2da50b15a342c3f1669d0c83fa096e91a1c1733ad4427f2d [none]
+[debug] [2026-05-22T13:20:02.637Z] >>> [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/myoffshorerotation/versions/f361303855e13f74/files/b3c83e6f49304f2e2da50b15a342c3f1669d0c83fa096e91a1c1733ad4427f2d [stream]
+[debug] [2026-05-22T13:20:02.637Z] [hosting][populate queue][FINAL] {"max":9670,"min":9670,"avg":9670,"active":0,"complete":1,"success":1,"errored":0,"retried":0,"total":1,"elapsed":9676}
+[debug] [2026-05-22T13:20:02.637Z] [hosting] uploads queued: 10
+[debug] [2026-05-22T13:20:13.142Z] <<< [apiv2][status] POST https://upload-firebasehosting.googleapis.com/upload/sites/myoffshorerotation/versions/f361303855e13f74/files/cf0ef844d4705c5c11f9b3c127fe7688f5bd27770c831e9dddd11c2a9f8dafca 200
+[debug] [2026-05-22T13:20:13.142Z] <<< [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/myoffshorerotation/versions/f361303855e13f74/files/cf0ef844d4705c5c11f9b3c127fe7688f5bd27770c831e9dddd11c2a9f8dafca [stream]
+[debug] [2026-05-22T13:20:13.288Z] <<< [apiv2][status] POST https://upload-firebasehosting.googleapis.com/upload/sites/myoffshorerotation/versions/f361303855e13f74/files/7321eab0884fca12dc2ff36fa45469f8bcf8ad003cf370906f7a886516845a49 200
+[debug] [2026-05-22T13:20:13.288Z] <<< [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/myoffshorerotation/versions/f361303855e13f74/files/7321eab0884fca12dc2ff36fa45469f8bcf8ad003cf370906f7a886516845a49 [stream]
+[debug] [2026-05-22T13:20:13.773Z] <<< [apiv2][status] POST https://upload-firebasehosting.googleapis.com/upload/sites/myoffshorerotation/versions/f361303855e13f74/files/07c2b739e98adfb41994cb9a8ca1cad777a9904e51013d6a90bbe368de83feb7 200
+[debug] [2026-05-22T13:20:13.774Z] <<< [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/myoffshorerotation/versions/f361303855e13f74/files/07c2b739e98adfb41994cb9a8ca1cad777a9904e51013d6a90bbe368de83feb7 [stream]
+[debug] [2026-05-22T13:20:13.774Z] <<< [apiv2][status] POST https://upload-firebasehosting.googleapis.com/upload/sites/myoffshorerotation/versions/f361303855e13f74/files/b3c83e6f49304f2e2da50b15a342c3f1669d0c83fa096e91a1c1733ad4427f2d 200
+[debug] [2026-05-22T13:20:13.774Z] <<< [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/myoffshorerotation/versions/f361303855e13f74/files/b3c83e6f49304f2e2da50b15a342c3f1669d0c83fa096e91a1c1733ad4427f2d [stream]
+[debug] [2026-05-22T13:20:14.387Z] <<< [apiv2][status] POST https://upload-firebasehosting.googleapis.com/upload/sites/myoffshorerotation/versions/f361303855e13f74/files/09e15d1438017c065a3281739cb5506aeaf7b3047bc3ada992da01d4497c2d43 200
+[debug] [2026-05-22T13:20:14.387Z] <<< [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/myoffshorerotation/versions/f361303855e13f74/files/09e15d1438017c065a3281739cb5506aeaf7b3047bc3ada992da01d4497c2d43 [stream]
+[debug] [2026-05-22T13:20:14.623Z] <<< [apiv2][status] POST https://upload-firebasehosting.googleapis.com/upload/sites/myoffshorerotation/versions/f361303855e13f74/files/20d5577c95a18804d3161a267ef038b6755640f8a920006116a0f0d58b907079 200
+[debug] [2026-05-22T13:20:14.623Z] <<< [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/myoffshorerotation/versions/f361303855e13f74/files/20d5577c95a18804d3161a267ef038b6755640f8a920006116a0f0d58b907079 [stream]
+[debug] [2026-05-22T13:20:14.780Z] <<< [apiv2][status] POST https://upload-firebasehosting.googleapis.com/upload/sites/myoffshorerotation/versions/f361303855e13f74/files/7897e07dc9ad912abfa3a242928fa768bf73c77fdbbd304a77012598c69d2a46 200
+[debug] [2026-05-22T13:20:14.780Z] <<< [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/myoffshorerotation/versions/f361303855e13f74/files/7897e07dc9ad912abfa3a242928fa768bf73c77fdbbd304a77012598c69d2a46 [stream]
+[debug] [2026-05-22T13:20:14.879Z] <<< [apiv2][status] POST https://upload-firebasehosting.googleapis.com/upload/sites/myoffshorerotation/versions/f361303855e13f74/files/8ca897bd8e18b1c1c36c5b29072cbb52f8b1ac1a8c117478f816be84425ccbee 200
+[debug] [2026-05-22T13:20:14.879Z] <<< [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/myoffshorerotation/versions/f361303855e13f74/files/8ca897bd8e18b1c1c36c5b29072cbb52f8b1ac1a8c117478f816be84425ccbee [stream]
+[debug] [2026-05-22T13:20:23.163Z] <<< [apiv2][status] POST https://upload-firebasehosting.googleapis.com/upload/sites/myoffshorerotation/versions/f361303855e13f74/files/3f7c6619ba6e295aff85623fd014f5ac6c51e6267e9190669a3fcec12084e471 200
+[debug] [2026-05-22T13:20:23.163Z] <<< [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/myoffshorerotation/versions/f361303855e13f74/files/3f7c6619ba6e295aff85623fd014f5ac6c51e6267e9190669a3fcec12084e471 [stream]
+[debug] [2026-05-22T13:20:24.950Z] <<< [apiv2][status] POST https://upload-firebasehosting.googleapis.com/upload/sites/myoffshorerotation/versions/f361303855e13f74/files/87a508a87c7878c1ccd22a56edeb68f977b12b57b20abff690ad918b0f3ea233 200
+[debug] [2026-05-22T13:20:24.950Z] <<< [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/myoffshorerotation/versions/f361303855e13f74/files/87a508a87c7878c1ccd22a56edeb68f977b12b57b20abff690ad918b0f3ea233 [stream]
+[debug] [2026-05-22T13:20:24.950Z] [hosting][upload queue][FINAL] {"max":22319,"min":10511,"avg":13445.1,"active":0,"complete":10,"success":10,"errored":0,"retried":0,"total":10,"elapsed":22320}
+[info] +  hosting[myoffshorerotation]: file upload complete 
+[debug] [2026-05-22T13:20:24.951Z] [hosting] deploy completed after 32018ms
+[debug] [2026-05-22T13:20:24.952Z] [rules] releasing cloud.firestore with ruleset projects/myoffshorerotation/rulesets/5775a44b-56ad-42a8-90f1-c5ff251546af
+[debug] [2026-05-22T13:20:24.952Z] Checked if tokens are valid: true, expires at: 1779458461993
+[debug] [2026-05-22T13:20:24.952Z] Checked if tokens are valid: true, expires at: 1779458461993
+[debug] [2026-05-22T13:20:24.952Z] >>> [apiv2][query] PATCH https://firebaserules.googleapis.com/v1/projects/myoffshorerotation/releases/cloud.firestore [none]
+[debug] [2026-05-22T13:20:24.952Z] >>> [apiv2][body] PATCH https://firebaserules.googleapis.com/v1/projects/myoffshorerotation/releases/cloud.firestore {"release":{"name":"projects/myoffshorerotation/releases/cloud.firestore","rulesetName":"projects/myoffshorerotation/rulesets/5775a44b-56ad-42a8-90f1-c5ff251546af"}}
+[debug] [2026-05-22T13:20:35.103Z] <<< [apiv2][status] PATCH https://firebaserules.googleapis.com/v1/projects/myoffshorerotation/releases/cloud.firestore 404
+[debug] [2026-05-22T13:20:35.103Z] <<< [apiv2][body] PATCH https://firebaserules.googleapis.com/v1/projects/myoffshorerotation/releases/cloud.firestore {"error":{"code":404,"message":"Requested entity was not found.","status":"NOT_FOUND"}}
+[debug] [2026-05-22T13:20:35.103Z] [rules] ruleset update failed, attempting to create instead
+[debug] [2026-05-22T13:20:35.103Z] Checked if tokens are valid: true, expires at: 1779458461993
+[debug] [2026-05-22T13:20:35.103Z] Checked if tokens are valid: true, expires at: 1779458461993
+[debug] [2026-05-22T13:20:35.103Z] >>> [apiv2][query] POST https://firebaserules.googleapis.com/v1/projects/myoffshorerotation/releases [none]
+[debug] [2026-05-22T13:20:35.103Z] >>> [apiv2][body] POST https://firebaserules.googleapis.com/v1/projects/myoffshorerotation/releases {"name":"projects/myoffshorerotation/releases/cloud.firestore","rulesetName":"projects/myoffshorerotation/rulesets/5775a44b-56ad-42a8-90f1-c5ff251546af"}
+[debug] [2026-05-22T13:20:38.203Z] <<< [apiv2][status] POST https://firebaserules.googleapis.com/v1/projects/myoffshorerotation/releases 200
+[debug] [2026-05-22T13:20:38.203Z] <<< [apiv2][body] POST https://firebaserules.googleapis.com/v1/projects/myoffshorerotation/releases {"name":"projects/myoffshorerotation/releases/cloud.firestore","rulesetName":"projects/myoffshorerotation/rulesets/5775a44b-56ad-42a8-90f1-c5ff251546af","createTime":"2026-05-22T13:20:54.773576Z","updateTime":"2026-05-22T13:20:54.773576Z"}
+[debug] [2026-05-22T13:20:38.203Z] [rules] created release projects/myoffshorerotation/releases/cloud.firestore
+[info] +  firestore: released rules firestore.rules to cloud.firestore 
+[debug] [2026-05-22T13:20:38.204Z] [
+  {
+    "config": {
+      "public": "dist",
+      "ignore": [
+        "firebase.json",
+        "**/.*",
+        "**/node_modules/**"
+      ],
+      "rewrites": [
+        {
+          "source": "**",
+          "destination": "/index.html"
+        }
+      ],
+      "site": "myoffshorerotation"
+    },
+    "version": "projects/544983536880/sites/myoffshorerotation/versions/f361303855e13f74"
+  }
+]
+[info] i  hosting[myoffshorerotation]: finalizing version... 
+[debug] [2026-05-22T13:20:38.205Z] Checked if tokens are valid: true, expires at: 1779458461993
+[debug] [2026-05-22T13:20:38.205Z] Checked if tokens are valid: true, expires at: 1779458461993
+[debug] [2026-05-22T13:20:38.205Z] >>> [apiv2][query] PATCH https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/myoffshorerotation/versions/f361303855e13f74 updateMask=status%2Cconfig
+[debug] [2026-05-22T13:20:38.205Z] >>> [apiv2][body] PATCH https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/myoffshorerotation/versions/f361303855e13f74 {"status":"FINALIZED","config":{"rewrites":[{"glob":"**","path":"/index.html"}]}}
+[debug] [2026-05-22T13:20:48.415Z] <<< [apiv2][status] PATCH https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/myoffshorerotation/versions/f361303855e13f74 200
+[debug] [2026-05-22T13:20:48.415Z] <<< [apiv2][body] PATCH https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/myoffshorerotation/versions/f361303855e13f74 {"name":"projects/544983536880/sites/myoffshorerotation/versions/f361303855e13f74","status":"FINALIZED","config":{"rewrites":[{"glob":"**","path":"/index.html"}]},"labels":{"deployment-tool":"cli-firebase"},"createTime":"2026-05-22T13:19:47.386099Z","createUser":{"email":"hessklinn@gmail.com"},"finalizeTime":"2026-05-22T13:21:05.261592Z","finalizeUser":{"email":"hessklinn@gmail.com"}}
+[debug] [2026-05-22T13:20:48.415Z] [hosting] finalized version for myoffshorerotation:[object Object]
+[info] +  hosting[myoffshorerotation]: version finalized 
+[info] i  hosting[myoffshorerotation]: releasing new version... 
+[debug] [2026-05-22T13:20:48.415Z] Checked if tokens are valid: true, expires at: 1779458461993
+[debug] [2026-05-22T13:20:48.415Z] Checked if tokens are valid: true, expires at: 1779458461993
+[debug] [2026-05-22T13:20:48.415Z] >>> [apiv2][query] POST https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/myoffshorerotation/channels/live/releases versionName=projects%2F544983536880%2Fsites%2Fmyoffshorerotation%2Fversions%2Ff361303855e13f74
+[debug] [2026-05-22T13:20:48.415Z] >>> [apiv2][body] POST https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/myoffshorerotation/channels/live/releases {}
+[debug] [2026-05-22T13:20:50.527Z] <<< [apiv2][status] POST https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/myoffshorerotation/channels/live/releases 200
+[debug] [2026-05-22T13:20:50.527Z] <<< [apiv2][body] POST https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/myoffshorerotation/channels/live/releases {"name":"projects/544983536880/sites/myoffshorerotation/channels/live/releases/1779456066590000","version":{"name":"projects/544983536880/sites/myoffshorerotation/versions/f361303855e13f74","status":"FINALIZED","config":{"rewrites":[{"glob":"**","path":"/index.html"}]},"labels":{"deployment-tool":"cli-firebase"},"createTime":"2026-05-22T13:19:47.386099Z","createUser":{"email":"hessklinn@gmail.com","imageUrl":"https://lh3.googleusercontent.com/a/ACg8ocKxjybITRqT1cUNSGO5tEf2Y5sKzQizCcxse8g0pKLZsEZCzIzq"},"finalizeTime":"2026-05-22T13:21:05.261592Z","finalizeUser":{"email":"hessklinn@gmail.com","imageUrl":"https://lh3.googleusercontent.com/a/ACg8ocKxjybITRqT1cUNSGO5tEf2Y5sKzQizCcxse8g0pKLZsEZCzIzq"}},"type":"DEPLOY","releaseTime":"2026-05-22T13:21:06.590Z","releaseUser":{"email":"hessklinn@gmail.com","imageUrl":"https://lh3.googleusercontent.com/a/ACg8ocKxjybITRqT1cUNSGO5tEf2Y5sKzQizCcxse8g0pKLZsEZCzIzq"}}
+[debug] [2026-05-22T13:20:50.527Z] [hosting] release: {"name":"projects/544983536880/sites/myoffshorerotation/channels/live/releases/1779456066590000","version":{"name":"projects/544983536880/sites/myoffshorerotation/versions/f361303855e13f74","status":"FINALIZED","config":{"rewrites":[{"glob":"**","path":"/index.html"}]},"labels":{"deployment-tool":"cli-firebase"},"createTime":"2026-05-22T13:19:47.386099Z","createUser":{"email":"hessklinn@gmail.com","imageUrl":"https://lh3.googleusercontent.com/a/ACg8ocKxjybITRqT1cUNSGO5tEf2Y5sKzQizCcxse8g0pKLZsEZCzIzq"},"finalizeTime":"2026-05-22T13:21:05.261592Z","finalizeUser":{"email":"hessklinn@gmail.com","imageUrl":"https://lh3.googleusercontent.com/a/ACg8ocKxjybITRqT1cUNSGO5tEf2Y5sKzQizCcxse8g0pKLZsEZCzIzq"}},"type":"DEPLOY","releaseTime":"2026-05-22T13:21:06.590Z","releaseUser":{"email":"hessklinn@gmail.com","imageUrl":"https://lh3.googleusercontent.com/a/ACg8ocKxjybITRqT1cUNSGO5tEf2Y5sKzQizCcxse8g0pKLZsEZCzIzq"}}
+[info] +  hosting[myoffshorerotation]: release complete 
+[info] 
+[info] +  Deploy complete! 
+[info] 
+[info] Project Console: https://console.firebase.google.com/project/myoffshorerotation/overview
+[info] Hosting URL: https://myoffshorerotation.web.app
+[debug] [2026-05-22T13:21:00.550Z] Error: Timed out.
+    at Timeout._onTimeout (C:\Users\hessk\AppData\Roaming\npm\node_modules\firebase-tools\lib\utils.js:309:49)
+    at listOnTimeout (node:internal/timers:605:17)
+    at process.processTimers (node:internal/timers:541:7)
+[error] 
+[error] Error: An unexpected error has occurred.

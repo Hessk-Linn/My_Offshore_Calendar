@@ -4,7 +4,7 @@ import { initializeFirestore, persistentLocalCache, persistentMultipleTabManager
 
 // Your web app's Firebase configuration. Replace these with your actual keys from Firebase Console.
 const firebaseConfig = {
-  apiKey: "AIzaSyDs5tvsZUUu0pZuo_vhbFl-YFkA0CIp3NA",
+  apiKey: "AIzaSyDs5tvsZUUu0pZuo_vhbFl-YFkaOCIp3NA",
   authDomain: "myoffshorerotation.firebaseapp.com",
   projectId: "myoffshorerotation",
   storageBucket: "myoffshorerotation.appspot.com",
