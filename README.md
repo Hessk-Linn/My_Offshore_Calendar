@@ -1,14 +1,16 @@
-# Offshore Rotation Planner (My_Offshore_Calendar)
+# Offshore Rotation Planner
 
 **My_Offshore_Calendar** helps offshore workers track their ON/OFF rotation cycles, calculate monthly earnings, Myanmar tax, and manage travel days. (Offshore ON/OFF rotation ကိုစိတ်ကြိုက်ချိန်ညှင်းနိုင်သည့် Calendar, အလုပ်ဟောင်းကြေး၊ ခရီးစရိတ်၊ မြန်မာနိုင်ငံအခွန်တွက်ချက်မှု စသည့်ဖြင့် ပုံမှန်သုံးရန် Offshore worker များအတွက် calendar application တစ်ခုပါ။)
 
 ## Features & Overview
+
 - **Custom Rotation Calendar**: Flexible ON/OFF cycle setup with user-defined anchor day. (ON/OFF rotation ကိုအစိတ်အပိုင်းဖြစ်အောင် ရွေးချယ်နိုင်သည့် စနစ်ပါဝင်သည်။)
 - **Myanmar & Thailand Holidays**: Built-in holiday awareness for Myanmar and Thailand, including lunar holidays for Myanmar. (မြန်မာနှင့် ထိုင်းနိုင်ငံအား ပေါင်းထည့်ပေးထားသော ရုံးပိတ်ရက်များ ပါဝင်သည်။)
 - **Earnings & Tax Calculation**: Track normal, travel rates, allowances, and Myanmar income tax based on latest brackets. (အလုပ်ရက်၊ ခရီးရက်၊ allowance နှင့် မြန်မာနိုင်ငံအခွန်တွက်ချက်မှုပြုလုပ်နိုင်သည်။)
 - **PWA / Offline-first**: Application is installable and works offline, suitable for offshore conditions. (Offline-first PWA ဖြစ်လို့ လိုင်းမရှိပဲ သုံးနိုင်သည်။)
 
 ## Directory Structure
+
 ```
 My_Offshore_Calendar/
 │
@@ -29,20 +31,22 @@ My_Offshore_Calendar/
 ```
 
 ## Quick Start
+
 1. **Install dependencies**
-    ```powershell
+    ```
     npm install
     ```
 2. **Run development server**
-    ```powershell
+    ```
     npm run dev
     ```
 3. **Production build**
-    ```powershell
+    ```
     npm run build
     ```
 
 ## Main Functional Flow (လုပ်ဆောင်ချက်အဓိပ္ပါယ်)
+
 - User sets anchor date & pattern in Settings (ON/OFF period). (အသုံးပြုသူအနေနဲ့ anchor date နှင့် pattern ကိုနှစ်သက်ရာရွေးနိုင်သည်။)
 - Calendar displays rotation periods and holidays. (ON/OFF အလုပ်ရက်၊ ခရီးရက်၊ ရုံးပိတ်ရက်တွေပြသည်။)
 - Dashboard summarizes work/travel days and calculates earnings/tax. (Summary က ဝင်ငွေ၊ ခရီးစရိတ်၊ အခွန်အပါအဝင်ပြသသည်။)
