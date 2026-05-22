@@ -1,5 +1,7 @@
 # Offshore Rotation Planner
 
+LIVE URL >>>  https://myoffshorerotation.web.app/   <<<
+
 **My_Offshore_Calendar** is an offline-first planner designed for offshore crews to manage ON/OFF rotations, travel days, earnings, and Myanmar tax obligations while syncing securely across devices through Firebase. (Offshore worker များအတွက် ON/OFF rotation, ခရီးရက်, ဝင်ငွေ နှင့် မြန်မာအခွန် တွက်ချက်နိုင်သည့် offline-first application ဖြစ်သည်။)
 
 ## Feature Highlights
