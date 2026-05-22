@@ -1,12 +1,15 @@
 import React from 'react';
 import { useStore } from './store';
+import { auth } from './firebase';
+import { signOut } from 'firebase/auth';
+import { LogOut, User } from 'lucide-react';
 
 const Settings = () => {
   const { 
     anchorDate, setAnchorDate,
     normalRate, travelRate, allowances, currency, setRates, setCurrency,
     mmkMonthlyAmount, setMmkMonthlyAmount,
-    rotationPreset, setRotationPreset, resetAll
+    rotationPreset, setRotationPreset, resetAll, user
   } = useStore();
 
   const handleRateChange = (e) => {
@@ -19,6 +22,27 @@ const Settings = () => {
 
   return (
     <div className="space-y-6 pb-10">
+      {user && (
+        <section className="bg-slate-800/40 border border-slate-800/80 rounded-2xl p-4 flex items-center justify-between">
+          <div className="flex items-center gap-3">
+            <div className="w-10 h-10 rounded-xl bg-sky-500/10 border border-sky-500/20 flex items-center justify-center text-sky-400">
+              <User className="w-5 h-5" />
+            </div>
+            <div>
+              <p className="text-[10px] text-slate-500 uppercase font-bold tracking-wider">Logged In As</p>
+              <p className="text-sm font-semibold text-slate-200">{user.email}</p>
+            </div>
+          </div>
+          <button
+            onClick={() => signOut(auth)}
+            className="p-2 bg-slate-800 hover:bg-slate-700/80 hover:text-rose-400 rounded-xl border border-slate-700/40 text-slate-400 transition-colors flex items-center gap-1.5 text-xs font-semibold cursor-pointer"
+          >
+            <LogOut className="w-3.5 h-3.5" />
+            <span>Sign Out</span>
+          </button>
+        </section>
+      )}
+
       <section className="space-y-4">
         <h3 className="text-lg font-bold text-slate-100 flex items-center gap-2">
           📅 Rotation Schedule
