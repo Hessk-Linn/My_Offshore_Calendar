@@ -22,7 +22,7 @@ export const isWorkDay = (date, anchorDate, onDays = 28, offDays = 28) => {
 };
 
 /**
- * Calculates if a given date is automatically a travel day (day 1 of On cycle or Day 1 of Off cycle).
+ * Calculates if a given date is automatically a travel day (only day 1 of the Off cycle).
  */
 export const isTravelDayAuto = (date, anchorDate, onDays = 28, offDays = 28) => {
   if (!anchorDate) return false;
@@ -30,7 +30,7 @@ export const isTravelDayAuto = (date, anchorDate, onDays = 28, offDays = 28) => 
   const diff = differenceInDays(date, start);
   const cycle = onDays + offDays;
   const position = ((diff % cycle) + cycle) % cycle;
-  return position === 0 || position === onDays;
+  return position === onDays;
 };
 
 /**
