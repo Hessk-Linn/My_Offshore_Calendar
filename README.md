@@ -148,6 +148,14 @@ My_Offshore_Calendar/
 4. **Role-based Sharing** – Optional supervisor view for team rotations while keeping individual privacy control.
 5. **Offline Data Exports** – Generate PDF/CSV summaries for payroll submissions.
 
+## Progress Log
+
+**2026-05-31**
+- Added manual **Extra Work Day** overrides with synced storage (Zustand + Firestore) while keeping base rotation intact.
+- Calendar now supports single-tap detail panel, travel vs. extra work toggles, and refreshed legend/UI cues.
+- Monthly dashboard and annual projection reports include extra work day counts in earnings calculations.
+- README updated with new workflow instructions; production build deployed (rerun `firebase deploy --only hosting` if new changes are made).
+
 ## Contributing & License
 
 - Codebase uses React 18 with modern hooks; follow existing formatting and state patterns when contributing.
