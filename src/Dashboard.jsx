@@ -6,7 +6,7 @@ import{TrendingUp,Clock,ShieldCheck,ChevronLeft,ChevronRight}from'lucide-react';
 import AnnualProjection from'./AnnualProjection';
 
 export default function Dashboard(){
-const{anchorDate,travelDays,normalRate,travelRate,allowances,currency,mmkMonthlyAmount,rotationOn,rotationOff}=useStore();
+const{anchorDate,travelDays,extraWorkDays,normalRate,travelRate,allowances,currency,mmkMonthlyAmount,rotationOn,rotationOff}=useStore();
 const[dm,setDm]=useState(new Date());
 const r={normalRate,travelRate,allowances,currency};
 
@@ -23,7 +23,7 @@ return(
 );
 }
 
-const st=getMonthStats(dm,anchorDate,travelDays,r,rotationOn,rotationOff,mmkMonthlyAmount);
+const st=getMonthStats(dm,anchorDate,travelDays,extraWorkDays,r,rotationOn,rotationOff,mmkMonthlyAmount);
 let ncc=new Date(),f=0,sf=0;
 const co=isWorkDay(ncc,anchorDate,rotationOn,rotationOff);
 while(!f&&sf<100){ncc=addDays(ncc,1);if(isWorkDay(ncc,anchorDate,rotationOn,rotationOff)!==co)f=1;sf++}
@@ -61,9 +61,10 @@ return(
 </div>
 <div className="bg-[#0f172a] border border-slate-800 rounded-xl p-4">
 <h3 className="text-sm font-semibold text-slate-300 mb-3">Month Breakdown ({format(dm,'MMMM')})</h3>
-<div className="grid grid-cols-2 gap-4">
+<div className="grid grid-cols-3 gap-4">
 <div className="p-3 bg-slate-800/50 rounded-lg"><p className="text-slate-500 text-[10px] uppercase font-bold">On-Shift Days</p><p className="text-lg font-bold text-amber-400">{st.workDaysCount}</p></div>
 <div className="p-3 bg-slate-800/50 rounded-lg"><p className="text-slate-500 text-[10px] uppercase font-bold">Travel Days</p><p className="text-lg font-bold text-sky-400">{st.travelDaysCount}</p></div>
+<div className="p-3 bg-slate-800/50 rounded-lg"><p className="text-slate-500 text-[10px] uppercase font-bold">Extra Work Days</p><p className="text-lg font-bold text-emerald-400">{st.extraWorkDaysCount}</p></div>
 </div>
 </div>
 <AnnualProjection year={dm.getFullYear()}/>

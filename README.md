@@ -6,7 +6,7 @@ LIVE URL >>>  https://myoffshorerotation.web.app/   <<<
 
 ## Feature Highlights
 
-- **Custom Rotation Engine** – Configure anchor date, ON/OFF durations, and travel overrides with double-tap prevention for accidental changes.
+- **Custom Rotation Engine** – Configure anchor date, ON/OFF durations, travel overrides, and manual extra work days with double-tap prevention for accidental changes.
 - **Holiday Intelligence** – Myanmar fixed + lunar holidays and optional region sets (e.g. Thailand) built into `src/holidays.js`.
 - **Earnings & Myanmar Tax** – Monthly gross, travel allowances, and progressive Myanmar tax calculation with the latest brackets.
 - **Secure Multi-user Sync** – Firebase Authentication (Email/Password) with Firestore per-user documents and strong security rules.
@@ -109,9 +109,10 @@ My_Offshore_Calendar/
    - Go to **Settings → Rotation Preset** and enter anchor date, ON/OFF lengths, travel allowances, and currency.
    - The calendar immediately recalculates based on the new pattern.
 
-3. **Manage Travel Days**
-   - Tap/Click a day twice quickly (double-tap) to toggle travel status. Single taps are ignored to prevent accidental changes.
-   - Travel days appear with dedicated styling and are included in Dashboard totals.
+3. **Manage Travel & Extra Work Days**
+   - Tap/Click a day twice quickly (double-tap) to toggle travel status. Single taps open the detail panel.
+   - Use the panel buttons to mark off-duty days as **Extra Work** (adds to ON count without shifting the base rotation).
+   - Travel toggles always win over extra-work status if both are selected.
 
 4. **View Calendar Details**
    - Color legend distinguishes ON duty, OFF duty, weekends, and Myanmar holidays (bold crimson text).

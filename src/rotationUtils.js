@@ -73,10 +73,10 @@ export const calculateMyanmarTax = (monthlyGross) => {
 /**
  * Gets stats for a specific month
  */
-export const getMonthStats = (monthDate, anchorDate, travelDays, rates, rotationOn = 28, rotationOff = 28, mmkMonthlyAmount = 0) => {
+export const getMonthStats = (monthDate, anchorDate, travelDays, extraWorkDays, rates, rotationOn = 28, rotationOff = 28, mmkMonthlyAmount = 0) => {
   // Return zeros if no anchor date set
   if (!anchorDate) {
-    return { workDaysCount: 0, travelDaysCount: 0, gross: 0, tax: 0 };
+    return { workDaysCount: 0, travelDaysCount: 0, extraWorkDaysCount: 0, gross: 0, tax: 0 };
   }
 
   const start = startOfMonth(monthDate);
@@ -85,13 +85,22 @@ export const getMonthStats = (monthDate, anchorDate, travelDays, rates, rotation
 
   let workDaysCount = 0;
   let travelDaysCount = 0;
+  let extraWorkDaysCount = 0;
 
   days.forEach(day => {
     const dateStr = format(day, 'yyyy-MM-dd');
-    const isOn = isWorkDay(day, anchorDate, rotationOn, rotationOff);
-    const isTravel = isTravelDayAuto(day, anchorDate, rotationOn, rotationOff) !== travelDays.includes(dateStr);
+    const baseOn = isWorkDay(day, anchorDate, rotationOn, rotationOff);
+    const extraWork = extraWorkDays.includes(dateStr);
+    const baseTravelAuto = isTravelDayAuto(day, anchorDate, rotationOn, rotationOff);
+    const travelToggled = travelDays.includes(dateStr);
 
-    if (isOn) workDaysCount++;
+    const isWork = baseOn || extraWork;
+    let isTravel = baseTravelAuto;
+    if (travelToggled) isTravel = !isTravel;
+    if (extraWork) isTravel = false;
+
+    if (isWork) workDaysCount++;
+    if (extraWork) extraWorkDaysCount++;
     if (isTravel) travelDaysCount++;
   });
 
@@ -107,6 +116,7 @@ export const getMonthStats = (monthDate, anchorDate, travelDays, rates, rotation
   return {
     workDaysCount,
     travelDaysCount,
+    extraWorkDaysCount,
     gross,
     tax, // Always in MMK
   };

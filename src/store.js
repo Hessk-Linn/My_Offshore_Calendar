@@ -14,6 +14,7 @@ const DEFAULT_STATE = {
   currency: 'USD',
   mmkMonthlyAmount: 0,
   travelDays: [],
+  extraWorkDays: [],
   theme: 'dark',
   lastUpdated: 0,
 };
@@ -36,6 +37,7 @@ const saveToFirestore = async (uid, state) => {
       currency: state.currency,
       mmkMonthlyAmount: state.mmkMonthlyAmount,
       travelDays: state.travelDays,
+      extraWorkDays: state.extraWorkDays,
       theme: state.theme,
       lastUpdated: state.lastUpdated,
     };
@@ -84,7 +86,27 @@ export const useStore = create(
           const updatedTravelDays = exists 
             ? state.travelDays.filter(d => d !== date)
             : [...state.travelDays, date];
+          const updatedExtraWorkDays = state.extraWorkDays.filter(d => d !== date);
           return {
+            travelDays: updatedTravelDays,
+            extraWorkDays: updatedExtraWorkDays,
+            lastUpdated: timestamp
+          };
+        });
+        const { user } = get();
+        if (user) saveToFirestore(user.uid, get());
+      },
+
+      toggleExtraWorkDay: (date) => {
+        const timestamp = Date.now();
+        set((state) => {
+          const exists = state.extraWorkDays.includes(date);
+          const updatedExtraWorkDays = exists
+            ? state.extraWorkDays.filter(d => d !== date)
+            : [...state.extraWorkDays, date];
+          const updatedTravelDays = state.travelDays.filter(d => d !== date);
+          return {
+            extraWorkDays: updatedExtraWorkDays,
             travelDays: updatedTravelDays,
             lastUpdated: timestamp
           };
@@ -119,6 +141,8 @@ export const useStore = create(
         const timestamp = Date.now();
         set({
           ...DEFAULT_STATE,
+          travelDays: [],
+          extraWorkDays: [],
           lastUpdated: timestamp,
         });
         const { user } = get();
@@ -149,6 +173,7 @@ export const useStore = create(
                 currency: cloudData.currency || 'USD',
                 mmkMonthlyAmount: cloudData.mmkMonthlyAmount ?? 0,
                 travelDays: cloudData.travelDays || [],
+                extraWorkDays: cloudData.extraWorkDays || [],
                 theme: cloudData.theme || 'dark',
                 lastUpdated: cloudData.lastUpdated || 0,
               });
